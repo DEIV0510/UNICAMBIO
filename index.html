@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>UNICAMBIOSVE · Remesas y USDT al instante · Latinoamérica</title>
+<meta name="description" content="UNICAMBIOSVE — Envíos de dinero internacionales y compra/venta de USDT con la mejor tasa del mercado. Servicio rápido, seguro y 100% online a Venezuela, Colombia, México, Perú, Brasil, Chile, Argentina, Paraguay y EE.UU." />
+<meta name="theme-color" content="#06090d" />
+
+<link rel="icon" type="image/png" href="LOGO.png" />
+<link rel="apple-touch-icon" href="LOGO.png" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<!-- LOADER -->
+<div class="loader" id="loader">
+  <div class="loader-inner">
+    <img src="LOGO.png" alt="UNICAMBIOSVE" class="loader-img" />
+    <div class="loader-bar"><div class="loader-bar-fill"></div></div>
+  </div>
+</div>
+
+<!-- TOP TICKER -->
+<div class="ticker" aria-hidden="true">
+  <div class="ticker-track" id="ticker-track">
+    <!-- llenado por JS con tasas reales -->
+  </div>
+</div>
+
+<!-- NAV -->
+<nav class="nav" id="nav">
+  <div class="nav-inner">
+    <a href="#top" class="logo">
+      <img src="LOGO.png" alt="UNICAMBIOSVE" class="logo-img" />
+      <span class="logo-text">UNICAMBIO<b>SVE</b></span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#servicios">Servicios</a></li>
+      <li><a href="#como">Cómo funciona</a></li>
+      <li><a href="#paises">Países</a></li>
+      <li><a href="#porque">Por qué nosotros</a></li>
+      <li><a href="#faq">FAQ</a></li>
+    </ul>
+    <a href="https://wa.me/573233947051" target="_blank" rel="noopener" class="nav-cta">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M.057 24l1.687-6.163a11.867 11.867 0 0 1-1.587-5.946C.16 5.335 5.495 0 12.05 0a11.81 11.81 0 0 1 8.413 3.488 11.824 11.824 0 0 1 3.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 0 1-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884a9.86 9.86 0 0 0 1.51 5.26l-.999 3.648 3.978-.607zM17.367 14.382c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.166-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.207-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.521.074-.793.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.625.712.227 1.36.195 1.872.118.571-.085 1.758-.719 2.006-1.413.247-.694.247-1.289.173-1.413z"/></svg>
+      WhatsApp
+    </a>
+    <button class="nav-burger" id="burger" aria-label="Menú"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero" id="top">
+  <div class="hero-bg">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+    <div class="grid-overlay"></div>
+  </div>
+
+  <div class="hero-inner">
+    <div class="hero-copy">
+      <span class="badge">
+        <span class="badge-dot"></span>
+        Operando en 9 países · 12.000+ clientes
+      </span>
+      <h1>
+        Envía dinero<br/>y cambia <span class="grad">USDT</span><br/>al instante.
+      </h1>
+      <p class="hero-sub">
+        Remesas internacionales y compra/venta de criptomonedas con la
+        <b>mejor tasa del mercado</b>, atención humana y entregas en minutos.
+        100% online, 100% seguro.
+      </p>
+
+      <div class="hero-cta-row">
+        <a href="#converter" class="btn btn-primary">
+          Calcular envío
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </a>
+        <a href="https://wa.me/573233947051?text=Hola%2C%20quiero%20información%20sobre%20UNICAMBIOSVE" target="_blank" rel="noopener" class="btn btn-ghost">
+          Hablar con un asesor
+        </a>
+      </div>
+
+      <ul class="hero-trust">
+        <li>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l8 4v6c0 5-3.5 9-8 10-4.5-1-8-5-8-10V6l8-4z"/><path d="M9 12l2 2 4-4"/></svg>
+          Operaciones verificadas
+        </li>
+        <li>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+          Entrega en minutos
+        </li>
+        <li>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 22V12h6v10"/></svg>
+          Atención 7 días
+        </li>
+      </ul>
+    </div>
+
+    <!-- CONVERTER WIDGET -->
+    <aside class="converter" id="converter">
+      <div class="converter-glow"></div>
+
+      <div class="converter-head">
+        <div class="converter-tabs" role="tablist">
+          <button class="tab active" data-tab="remesa" role="tab">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 4L12 14.01l-3-3"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+            Remesa
+          </button>
+          <button class="tab" data-tab="usdt" role="tab">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v12M8 10h8M8 14h8"/></svg>
+            USDT / Cripto
+          </button>
+        </div>
+        <span class="live-dot"><span></span> En vivo</span>
+      </div>
+
+      <div class="converter-body">
+        <!-- Tú envías -->
+        <div class="conv-field">
+          <label>Tú envías</label>
+          <div class="conv-input">
+            <input type="text" id="send-amount" value="100" inputmode="decimal" autocomplete="off" />
+            <button class="conv-currency" id="send-currency-btn" type="button">
+              <span class="flag" id="send-flag">🇺🇸</span>
+              <span id="send-code">USD</span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+            </button>
+          </div>
+        </div>
+
+        <button class="conv-swap" id="conv-swap" aria-label="Invertir monedas">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 16V4M3 8l4-4 4 4M17 8v12M21 16l-4 4-4-4"/></svg>
+        </button>
+
+        <!-- Recibe -->
+        <div class="conv-field">
+          <label>Recibe (aprox.)</label>
+          <div class="conv-input">
+            <input type="text" id="recv-amount" value="..." readonly />
+            <button class="conv-currency" id="recv-currency-btn" type="button">
+              <span class="flag" id="recv-flag">🇨🇴</span>
+              <span id="recv-code">COP</span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+            </button>
+          </div>
+        </div>
+
+        <div class="conv-rate">
+          <div class="rate-line">
+            <span>Tasa</span>
+            <strong id="rate-display">Cargando…</strong>
+          </div>
+          <div class="rate-line muted">
+            <span>Actualizada</span>
+            <span id="rate-updated">—</span>
+          </div>
+        </div>
+
+        <a href="#" id="conv-cta" target="_blank" rel="noopener" class="btn btn-primary btn-block">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163a11.867 11.867 0 0 1-1.587-5.946C.16 5.335 5.495 0 12.05 0a11.81 11.81 0 0 1 8.413 3.488 11.824 11.824 0 0 1 3.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 0 1-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884a9.86 9.86 0 0 0 1.51 5.26l-.999 3.648 3.978-.607zM17.367 14.382c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.166-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.207-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.521.074-.793.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.625.712.227 1.36.195 1.872.118.571-.085 1.758-.719 2.006-1.413.247-.694.247-1.289.173-1.413z"/></svg>
+          Continuar por WhatsApp
+        </a>
+
+        <p class="conv-fineprint">
+          Tasa referencial del mercado. La tasa final puede variar según el método de pago y el horario bancario.
+        </p>
+      </div>
+    </aside>
+  </div>
+</header>
+
+<!-- LOGOS / TRUST BAR -->
+<section class="trustbar">
+  <div class="container">
+    <p class="trustbar-title">Operamos con los principales métodos de pago</p>
+    <div class="trustbar-grid">
+      <span>Zelle</span>
+      <span>PayPal</span>
+      <span>Binance</span>
+      <span>Nequi</span>
+      <span>Bancolombia</span>
+      <span>Mercantil</span>
+      <span>Banesco</span>
+      <span>BBVA</span>
+      <span>PIX</span>
+      <span>SPEI</span>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<section class="stats">
+  <div class="container">
+    <div class="stat">
+      <span class="stat-num" data-target="12000" data-suffix="+">0</span>
+      <span class="stat-label">Clientes activos</span>
+    </div>
+    <div class="stat">
+      <span class="stat-num" data-target="9">0</span>
+      <span class="stat-label">Países</span>
+    </div>
+    <div class="stat">
+      <span class="stat-num" data-target="986" data-suffix="+">0</span>
+      <span class="stat-label">Operaciones publicadas</span>
+    </div>
+    <div class="stat">
+      <span class="stat-num" data-target="100" data-suffix="%">0</span>
+      <span class="stat-label">Operaciones verificadas</span>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICIOS -->
+<section class="section" id="servicios">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Nuestros servicios</span>
+      <h2>Una sola plataforma, todo el dinero del mundo.</h2>
+      <p>Movemos tu dinero por donde más te convenga: remesas tradicionales, transferencias entre cuentas o cripto. Tú eliges.</p>
+    </div>
+
+    <div class="cards">
+      <article class="card">
+        <div class="card-icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 7h18M3 12h18M3 17h18"/><circle cx="6" cy="7" r="1.5" fill="currentColor"/><circle cx="18" cy="17" r="1.5" fill="currentColor"/></svg>
+        </div>
+        <h3>Envío de remesas</h3>
+        <p>Envía y recibe dinero en cualquier país de Latinoamérica con acreditación en minutos. Sin filas, sin oficinas.</p>
+        <ul>
+          <li>Zelle, PayPal y bancos de EE.UU.</li>
+          <li>Acreditación nacional en Colombia, México, Perú, Brasil…</li>
+          <li>Bolívares al mejor cambio en Venezuela</li>
+        </ul>
+      </article>
+
+      <article class="card card-featured">
+        <div class="card-icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M16 8l-8 8M8.5 8.5L9 9M15 15l.5.5"/></svg>
+        </div>
+        <h3>Compra y venta de USDT</h3>
+        <p>Compra USDT con tu moneda local o conviértelo a efectivo con la tasa más competitiva. Operaciones P2P verificadas.</p>
+        <ul>
+          <li>Red TRC20, ERC20, BEP20</li>
+          <li>Compra desde 20 USDT</li>
+          <li>Liberación inmediata</li>
+        </ul>
+        <span class="card-flag">Más solicitado</span>
+      </article>
+
+      <article class="card">
+        <div class="card-icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><path d="M3.27 6.96L12 12.01l8.73-5.05M12 22.08V12"/></svg>
+        </div>
+        <h3>Atención mayorista</h3>
+        <p>¿Eres comerciante o empresa? Tenemos tasas preferenciales para operaciones de alto volumen y atención dedicada.</p>
+        <ul>
+          <li>Cuenta corporativa</li>
+          <li>Tasas preferenciales</li>
+          <li>Soporte 1 a 1</li>
+        </ul>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- CÓMO FUNCIONA -->
+<section class="section section-dark" id="como">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Cómo funciona</span>
+      <h2>Tu dinero, en 4 pasos.</h2>
+      <p>Sin formularios eternos ni esperas absurdas. Así de simple.</p>
+    </div>
+
+    <div class="steps">
+      <div class="step">
+        <span class="step-n">01</span>
+        <h4>Cotiza</h4>
+        <p>Usa la calculadora o escríbenos por WhatsApp con el monto que quieres enviar.</p>
+      </div>
+      <div class="step">
+        <span class="step-n">02</span>
+        <h4>Confirma</h4>
+        <p>Te confirmamos la tasa y los datos de la cuenta de destino. Cero letras chicas.</p>
+      </div>
+      <div class="step">
+        <span class="step-n">03</span>
+        <h4>Transfiere</h4>
+        <p>Realizas el pago por el método acordado (Zelle, PayPal, banco local, USDT, etc).</p>
+      </div>
+      <div class="step">
+        <span class="step-n">04</span>
+        <h4>Recibe</h4>
+        <p>Acreditamos en cuestión de minutos y te enviamos el comprobante. Listo.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PAÍSES -->
+<section class="section" id="paises">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Países cubiertos</span>
+      <h2>Tu dinero llega donde lo necesites.</h2>
+      <p>9 países, una sola plataforma. Y vamos por más.</p>
+    </div>
+
+    <div class="countries">
+      <div class="country"><span class="cflag">🇻🇪</span><span>Venezuela</span><small>VES</small></div>
+      <div class="country"><span class="cflag">🇨🇴</span><span>Colombia</span><small>COP</small></div>
+      <div class="country"><span class="cflag">🇲🇽</span><span>México</span><small>MXN</small></div>
+      <div class="country"><span class="cflag">🇵🇪</span><span>Perú</span><small>PEN</small></div>
+      <div class="country"><span class="cflag">🇧🇷</span><span>Brasil</span><small>BRL</small></div>
+      <div class="country"><span class="cflag">🇨🇱</span><span>Chile</span><small>CLP</small></div>
+      <div class="country"><span class="cflag">🇦🇷</span><span>Argentina</span><small>ARS</small></div>
+      <div class="country"><span class="cflag">🇵🇾</span><span>Paraguay</span><small>PYG</small></div>
+      <div class="country"><span class="cflag">🇺🇸</span><span>Estados Unidos</span><small>USD</small></div>
+    </div>
+  </div>
+</section>
+
+<!-- POR QUÉ -->
+<section class="section section-dark" id="porque">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Por qué UNICAMBIOSVE</span>
+      <h2>El cambio que tu dinero estaba esperando.</h2>
+    </div>
+
+    <div class="benefits">
+      <div class="benefit">
+        <div class="benefit-icon">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2l8 4v6c0 5-3.5 9-8 10-4.5-1-8-5-8-10V6l8-4z"/></svg>
+        </div>
+        <h4>Operaciones verificadas</h4>
+        <p>Cada movimiento queda documentado y cuenta con respaldo. Tu seguridad es la base de todo.</p>
+      </div>
+      <div class="benefit">
+        <div class="benefit-icon">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+        </div>
+        <h4>Entrega en minutos</h4>
+        <p>Sin esperas. La mayoría de nuestras operaciones se cierran en menos de 15 minutos.</p>
+      </div>
+      <div class="benefit">
+        <div class="benefit-icon">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 3v18h18"/><path d="M7 14l4-4 4 4 5-5"/></svg>
+        </div>
+        <h4>Mejor tasa del mercado</h4>
+        <p>Trabajamos con márgenes mínimos y tasas competitivas. Nada de comisiones ocultas.</p>
+      </div>
+      <div class="benefit">
+        <div class="benefit-icon">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+        </div>
+        <h4>Atención humana</h4>
+        <p>Hablas con personas, no con bots. Escríbenos por WhatsApp y tendrás respuesta en minutos.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIOS -->
+<section class="section">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Lo que dicen nuestros clientes</span>
+      <h2>Más de 12.000 personas ya confían en nosotros.</h2>
+    </div>
+
+    <div class="testimonials">
+      <div class="testimonial">
+        <div class="stars">★★★★★</div>
+        <p>"Excelente atención, llevo más de un año operando con ellos. Las tasas son las mejores de Venezuela y la entrega es instantánea."</p>
+        <div class="t-author">
+          <span class="t-avatar" style="background:linear-gradient(135deg,#14e8c1,#22ff7a)">D</span>
+          <div><b>Daniela R.</b><small>Caracas, VE</small></div>
+        </div>
+      </div>
+      <div class="testimonial">
+        <div class="stars">★★★★★</div>
+        <p>"Hago todas mis remesas con UNICAMBIOSVE desde Bogotá. Súper confiables y siempre disponibles, incluso fines de semana."</p>
+        <div class="t-author">
+          <span class="t-avatar" style="background:linear-gradient(135deg,#7bf1ad,#14e8c1)">J</span>
+          <div><b>Jhon M.</b><small>Bogotá, CO</small></div>
+        </div>
+      </div>
+      <div class="testimonial">
+        <div class="stars">★★★★★</div>
+        <p>"Compré mis primeros USDT con ellos y me explicaron todo paso a paso. Cero estrés, llegó la transferencia en 5 minutos."</p>
+        <div class="t-author">
+          <span class="t-avatar" style="background:linear-gradient(135deg,#22ff7a,#7bf1ad)">S</span>
+          <div><b>Sofía P.</b><small>Lima, PE</small></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="section section-dark" id="faq">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Preguntas frecuentes</span>
+      <h2>Resolvemos tus dudas.</h2>
+    </div>
+
+    <div class="faq">
+      <details>
+        <summary>¿Cómo inicio mi primera operación?</summary>
+        <p>Solo escríbenos por WhatsApp al +57 323 394 7051 o usa la calculadora de la parte superior. Te confirmamos la tasa, te pasamos los datos y listo.</p>
+      </details>
+      <details>
+        <summary>¿Cuánto demora una remesa?</summary>
+        <p>La gran mayoría de operaciones se acreditan en menos de 15 minutos, una vez confirmado tu pago. En horarios bancarios fuera de operación puede tomar un poco más.</p>
+      </details>
+      <details>
+        <summary>¿Qué monto mínimo puedo enviar o cambiar?</summary>
+        <p>Operamos desde 20 USD / 20 USDT para clientes nuevos. Para operaciones mayoristas tenemos tasas preferenciales.</p>
+      </details>
+      <details>
+        <summary>¿Es seguro operar con ustedes?</summary>
+        <p>Sí. Llevamos años operando con miles de clientes activos, todas nuestras operaciones quedan registradas y cuentan con comprobante.</p>
+      </details>
+      <details>
+        <summary>¿Qué redes de USDT manejan?</summary>
+        <p>TRC20 (Tron), ERC20 (Ethereum) y BEP20 (BSC). Recomendamos TRC20 por sus bajas comisiones.</p>
+      </details>
+      <details>
+        <summary>¿Puedo recibir el dinero en mi banco local?</summary>
+        <p>Sí. Tenemos cuentas en los principales bancos de Colombia, Venezuela, México, Perú, Brasil, Chile, Argentina y Paraguay.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<section class="cta-final">
+  <div class="container">
+    <div class="cta-card">
+      <div>
+        <h2>¿Listo para tu próximo envío?</h2>
+        <p>Escríbenos ahora y te atendemos en menos de 5 minutos.</p>
+      </div>
+      <div class="cta-buttons">
+        <a href="https://wa.me/573233947051?text=Hola%2C%20quiero%20realizar%20una%20operación" target="_blank" rel="noopener" class="btn btn-primary btn-lg">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163a11.867 11.867 0 0 1-1.587-5.946C.16 5.335 5.495 0 12.05 0a11.81 11.81 0 0 1 8.413 3.488 11.824 11.824 0 0 1 3.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 0 1-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884a9.86 9.86 0 0 0 1.51 5.26l-.999 3.648 3.978-.607zM17.367 14.382c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.166-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.207-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.521.074-.793.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.625.712.227 1.36.195 1.872.118.571-.085 1.758-.719 2.006-1.413.247-.694.247-1.289.173-1.413z"/></svg>
+          Iniciar operación
+        </a>
+        <a href="https://instagram.com/unicambiosve" target="_blank" rel="noopener" class="btn btn-ghost btn-lg">
+          @unicambiosve
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container footer-inner">
+    <div class="footer-brand">
+      <img src="LOGO.png" alt="UNICAMBIOSVE" class="footer-logo" />
+      <p>Remesas internacionales y compra/venta de USDT con la mejor tasa del mercado. Operando en 9 países de Latinoamérica.</p>
+    </div>
+
+    <div class="footer-col">
+      <h5>Servicios</h5>
+      <ul>
+        <li><a href="#servicios">Envío de remesas</a></li>
+        <li><a href="#servicios">Compra/venta USDT</a></li>
+        <li><a href="#servicios">Atención mayorista</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h5>Compañía</h5>
+      <ul>
+        <li><a href="#porque">Por qué nosotros</a></li>
+        <li><a href="#paises">Países</a></li>
+        <li><a href="#faq">FAQ</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h5>Contacto</h5>
+      <ul>
+        <li><a href="https://wa.me/573233947051" target="_blank" rel="noopener">WhatsApp: +57 323 394 7051</a></li>
+        <li><a href="https://instagram.com/unicambiosve" target="_blank" rel="noopener">Instagram: @unicambiosve</a></li>
+        <li><a href="mailto:unicambiosve@gmail.com">unicambiosve@gmail.com</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <div class="container">
+      <small>&copy; <span id="year"></span> UNICAMBIOSVE. Todos los derechos reservados.</small>
+      <small>Tasas referenciales basadas en mercado abierto. Sujetas a confirmación en cada operación.</small>
+    </div>
+  </div>
+</footer>
+
+<!-- WHATSAPP FLOATING BUTTON -->
+<a href="https://wa.me/573233947051?text=Hola%2C%20quiero%20info%20sobre%20UNICAMBIOSVE" target="_blank" rel="noopener" class="wa-float" aria-label="Chatear por WhatsApp">
+  <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163a11.867 11.867 0 0 1-1.587-5.946C.16 5.335 5.495 0 12.05 0a11.81 11.81 0 0 1 8.413 3.488 11.824 11.824 0 0 1 3.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 0 1-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884a9.86 9.86 0 0 0 1.51 5.26l-.999 3.648 3.978-.607zM17.367 14.382c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.166-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.207-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.521.074-.793.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.625.712.227 1.36.195 1.872.118.571-.085 1.758-.719 2.006-1.413.247-.694.247-1.289.173-1.413z"/></svg>
+</a>
+
+<!-- CURRENCY PICKER MODAL -->
+<div class="picker-overlay" id="picker-overlay" aria-hidden="true">
+  <div class="picker">
+    <div class="picker-head">
+      <h4 id="picker-title">Selecciona moneda</h4>
+      <button id="picker-close" class="picker-close" aria-label="Cerrar">×</button>
+    </div>
+    <input type="text" id="picker-search" placeholder="Buscar país o moneda…" />
+    <ul id="picker-list" class="picker-list"></ul>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
