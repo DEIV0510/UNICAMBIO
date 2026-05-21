@@ -3,33 +3,74 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>UNICAMBIOSVE · Remesas y USDT al instante · Latinoamérica</title>
-<meta name="description" content="UNICAMBIOSVE — Envíos de dinero internacionales y compra/venta de USDT con la mejor tasa del mercado. Servicio rápido, seguro y 100% online a Venezuela, Colombia, México, Perú, Brasil, Chile, Argentina, Paraguay y EE.UU." />
-<meta name="theme-color" content="#06090d" />
-
-<link rel="icon" type="image/png" href="LOGO.png" />
-<link rel="apple-touch-icon" href="LOGO.png" />
-
+<title>MENVI Eyewear · Óptica Premium · Transformamos tu forma de ver el mundo</title>
+<meta name="description" content="MENVI Eyewear · Óptica moderna que integra salud visual, estilo y experiencia premium. Lentes oftálmicos y gafas de sol en Colombia." />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
-
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;0,6..96,600;0,6..96,700;0,6..96,800;0,6..96,900;1,6..96,400&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400&family=Montserrat:wght@200;300;400;500;600;700&family=Questrial&display=swap" rel="stylesheet">
+<link rel="icon" type="image/png" href="LOGO.png" />
+<link rel="apple-touch-icon" href="LOGO.png" />
 <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
 
+<!-- SCROLL PROGRESS -->
+<div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
+
 <!-- LOADER -->
 <div class="loader" id="loader">
-  <div class="loader-inner">
-    <img src="LOGO.png" alt="UNICAMBIOSVE" class="loader-img" />
-    <div class="loader-bar"><div class="loader-bar-fill"></div></div>
+  <!-- Decorative corner brackets -->
+  <span class="loader-corner loader-corner-tl"></span>
+  <span class="loader-corner loader-corner-tr"></span>
+  <span class="loader-corner loader-corner-bl"></span>
+  <span class="loader-corner loader-corner-br"></span>
+
+  <!-- Top label -->
+  <span class="loader-top-label">M · E · N · V · I</span>
+
+  <!-- Logo wrapper with reveal mask -->
+  <div class="loader-logo">
+    <div class="loader-logo-mask">
+      <img src="LOGO.png" alt="MENVI Eyewear" class="loader-img" />
+      <span class="loader-shimmer"></span>
+    </div>
+    <div class="loader-line"></div>
+    <span class="loader-tagline">Transformamos tu forma de ver el mundo</span>
   </div>
+
+  <!-- Bottom progress bar with percentage -->
+  <div class="loader-progress">
+    <div class="loader-bar"><div class="loader-bar-fill"></div></div>
+    <span class="loader-counter" id="loaderCounter">00</span>
+  </div>
+
+  <!-- Bottom label -->
+  <span class="loader-bottom-label">EYEWEAR · PREMIUM · 2026</span>
 </div>
 
-<!-- TOP TICKER -->
-<div class="ticker" aria-hidden="true">
-  <div class="ticker-track" id="ticker-track">
-    <!-- llenado por JS con tasas reales -->
+<!-- MARQUEE TICKER -->
+<div class="marquee" aria-hidden="true">
+  <div class="marquee-track">
+    <span class="marquee-item">NUEVA COLECCIÓN 2026</span>
+    <span class="marquee-dot">✦</span>
+    <span class="marquee-item">EXAMEN VISUAL PROFESIONAL</span>
+    <span class="marquee-dot">✦</span>
+    <span class="marquee-item">TRANSFORMAMOS TU FORMA DE VER EL MUNDO</span>
+    <span class="marquee-dot">✦</span>
+    <span class="marquee-item">LENTES PREMIUM</span>
+    <span class="marquee-dot">✦</span>
+    <span class="marquee-item">DISEÑO EXCLUSIVO</span>
+    <span class="marquee-dot">✦</span>
+    <span class="marquee-item">NUEVA COLECCIÓN 2026</span>
+    <span class="marquee-dot">✦</span>
+    <span class="marquee-item">EXAMEN VISUAL PROFESIONAL</span>
+    <span class="marquee-dot">✦</span>
+    <span class="marquee-item">TRANSFORMAMOS TU FORMA DE VER EL MUNDO</span>
+    <span class="marquee-dot">✦</span>
+    <span class="marquee-item">LENTES PREMIUM</span>
+    <span class="marquee-dot">✦</span>
+    <span class="marquee-item">DISEÑO EXCLUSIVO</span>
+    <span class="marquee-dot">✦</span>
   </div>
 </div>
 
@@ -37,493 +78,556 @@
 <nav class="nav" id="nav">
   <div class="nav-inner">
     <a href="#top" class="logo">
-      <img src="LOGO.png" alt="UNICAMBIOSVE" class="logo-img" />
-      <span class="logo-text">UNICAMBIO<b>SVE</b></span>
+      <img src="LOGO.png" alt="MENVI Eyewear" class="logo-img" />
     </a>
     <ul class="nav-links">
+      <li><a href="#marca">La Marca</a></li>
       <li><a href="#servicios">Servicios</a></li>
-      <li><a href="#como">Cómo funciona</a></li>
-      <li><a href="#paises">Países</a></li>
-      <li><a href="#porque">Por qué nosotros</a></li>
-      <li><a href="#faq">FAQ</a></li>
+      <li><a href="#productos">Productos</a></li>
+      <li><a href="#galeria">Estilo</a></li>
+      <li><a href="#contacto">Contacto</a></li>
     </ul>
-    <a href="https://wa.me/573233947051" target="_blank" rel="noopener" class="nav-cta">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M.057 24l1.687-6.163a11.867 11.867 0 0 1-1.587-5.946C.16 5.335 5.495 0 12.05 0a11.81 11.81 0 0 1 8.413 3.488 11.824 11.824 0 0 1 3.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 0 1-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884a9.86 9.86 0 0 0 1.51 5.26l-.999 3.648 3.978-.607zM17.367 14.382c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.166-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.207-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.521.074-.793.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.625.712.227 1.36.195 1.872.118.571-.085 1.758-.719 2.006-1.413.247-.694.247-1.289.173-1.413z"/></svg>
-      WhatsApp
+    <a href="#contacto" class="nav-cta">
+      Agendar cita
     </a>
     <button class="nav-burger" id="burger" aria-label="Menú"><span></span><span></span><span></span></button>
   </div>
 </nav>
 
+<!-- VERTICAL BRAND STRIPE -->
+<aside class="side-stripe" aria-hidden="true">
+  <span class="side-stripe-text">MENVI EYEWEAR · TRANSFORMAMOS TU FORMA DE VER EL MUNDO</span>
+</aside>
+
+<!-- SIDE SECTION INDICATOR -->
+<div class="side-indicator" id="sideIndicator" aria-hidden="true">
+  <span class="side-num">01</span>
+  <span class="side-divider"></span>
+  <span class="side-total">06</span>
+  <span class="side-label">Inicio</span>
+</div>
+
 <!-- HERO -->
-<header class="hero" id="top">
+<section class="hero" id="top">
   <div class="hero-bg">
-    <div class="orb orb-1"></div>
-    <div class="orb orb-2"></div>
-    <div class="orb orb-3"></div>
-    <div class="grid-overlay"></div>
+    <img src="https://images.unsplash.com/photo-1577803645773-f96470509666?w=2000&q=85" alt="MENVI Eyewear - Gafas premium" />
+    <div class="hero-overlay"></div>
   </div>
 
-  <div class="hero-inner">
-    <div class="hero-copy">
-      <span class="badge">
-        <span class="badge-dot"></span>
-        Operando en 9 países · 12.000+ clientes
-      </span>
-      <h1>
-        Envía dinero<br/>y cambia <span class="grad">USDT</span><br/>al instante.
-      </h1>
-      <p class="hero-sub">
-        Remesas internacionales y compra/venta de criptomonedas con la
-        <b>mejor tasa del mercado</b>, atención humana y entregas en minutos.
-        100% online, 100% seguro.
-      </p>
+  <div class="hero-watermark" aria-hidden="true">MENVI</div>
 
-      <div class="hero-cta-row">
-        <a href="#converter" class="btn btn-primary">
-          Calcular envío
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
-        </a>
-        <a href="https://wa.me/573233947051?text=Hola%2C%20quiero%20información%20sobre%20UNICAMBIOSVE" target="_blank" rel="noopener" class="btn btn-ghost">
-          Hablar con un asesor
-        </a>
-      </div>
+  <!-- Lens flare effect -->
+  <div class="lens-flare" aria-hidden="true">
+    <span class="lens-flare-1"></span>
+    <span class="lens-flare-2"></span>
+  </div>
 
-      <ul class="hero-trust">
-        <li>
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l8 4v6c0 5-3.5 9-8 10-4.5-1-8-5-8-10V6l8-4z"/><path d="M9 12l2 2 4-4"/></svg>
-          Operaciones verificadas
-        </li>
-        <li>
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
-          Entrega en minutos
-        </li>
-        <li>
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 22V12h6v10"/></svg>
-          Atención 7 días
-        </li>
-      </ul>
+  <div class="hero-content">
+    <span class="hero-badge">
+      <span class="hero-badge-dot"></span>
+      Agenda disponible · Atención hoy mismo
+    </span>
+    <h1 class="hero-title">
+      <img src="LOGO.png" alt="MENVI Eyewear" class="hero-logo-img" />
+    </h1>
+    <p class="hero-sub" data-split>Agenda tu examen visual gratis.</p>
+    <p class="hero-desc">Diagnóstico profesional + asesoría de estilo en una sola visita. Reserva tu cupo en menos de 1 minuto.</p>
+    <div class="hero-actions">
+      <a href="#contacto" class="btn btn-dark btn-magnetic btn-pulse">
+        <span>Agendar mi examen visual</span>
+        <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      </a>
+      <a href="https://wa.me/573000000000?text=Hola%20MENVI%2C%20quiero%20agendar%20un%20examen%20visual" class="btn btn-outline-light btn-magnetic">
+        <svg viewBox="0 0 24 24" fill="currentColor" style="width:16px;height:16px"><path d="M17.5 14.4c-.3-.1-1.7-.8-1.9-.9-.3-.1-.5-.1-.7.1-.2.3-.8.9-.9 1.1-.2.2-.3.2-.6.1-.3-.1-1.2-.4-2.3-1.4-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.5.1-.6.1-.1.3-.3.4-.5.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5-.1-.1-.7-1.7-.9-2.3-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5 0 1.5 1.1 2.9 1.2 3.1.1.2 2.1 3.2 5.1 4.5.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.7-.7 2-1.4.3-.7.3-1.3.2-1.4 0-.1-.3-.2-.6-.4z"/><path d="M20.5 3.5C18.3 1.2 15.3 0 12.1 0 5.5 0 .1 5.4.1 12c0 2.1.6 4.2 1.6 6L0 24l6.2-1.6c1.7.9 3.7 1.4 5.8 1.4 6.6 0 12-5.4 12-12 0-3.2-1.2-6.2-3.5-8.3zM12.1 21.8c-1.9 0-3.7-.5-5.3-1.5l-.4-.2-3.7 1 1-3.6-.2-.4c-1.1-1.7-1.6-3.6-1.6-5.6 0-5.5 4.5-10 10-10 2.7 0 5.2 1 7.1 2.9 1.9 1.9 2.9 4.4 2.9 7.1.1 5.5-4.4 10.3-9.8 10.3z"/></svg>
+        <span>WhatsApp</span>
+      </a>
     </div>
-
-    <!-- CONVERTER WIDGET -->
-    <aside class="converter" id="converter">
-      <div class="converter-glow"></div>
-
-      <div class="converter-head">
-        <div class="converter-tabs" role="tablist">
-          <button class="tab active" data-tab="remesa" role="tab">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 4L12 14.01l-3-3"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
-            Remesa
-          </button>
-          <button class="tab" data-tab="usdt" role="tab">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v12M8 10h8M8 14h8"/></svg>
-            USDT / Cripto
-          </button>
-        </div>
-        <span class="live-dot"><span></span> En vivo</span>
-      </div>
-
-      <div class="converter-body">
-        <!-- Tú envías -->
-        <div class="conv-field">
-          <label>Tú envías</label>
-          <div class="conv-input">
-            <input type="text" id="send-amount" value="100" inputmode="decimal" autocomplete="off" />
-            <button class="conv-currency" id="send-currency-btn" type="button">
-              <span class="flag" id="send-flag">🇺🇸</span>
-              <span id="send-code">USD</span>
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
-            </button>
-          </div>
-        </div>
-
-        <button class="conv-swap" id="conv-swap" aria-label="Invertir monedas">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 16V4M3 8l4-4 4 4M17 8v12M21 16l-4 4-4-4"/></svg>
-        </button>
-
-        <!-- Recibe -->
-        <div class="conv-field">
-          <label>Recibe (aprox.)</label>
-          <div class="conv-input">
-            <input type="text" id="recv-amount" value="..." readonly />
-            <button class="conv-currency" id="recv-currency-btn" type="button">
-              <span class="flag" id="recv-flag">🇨🇴</span>
-              <span id="recv-code">COP</span>
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
-            </button>
-          </div>
-        </div>
-
-        <div class="conv-rate">
-          <div class="rate-line">
-            <span>Tasa</span>
-            <strong id="rate-display">Cargando…</strong>
-          </div>
-          <div class="rate-line muted">
-            <span>Actualizada</span>
-            <span id="rate-updated">—</span>
-          </div>
-        </div>
-
-        <a href="#" id="conv-cta" target="_blank" rel="noopener" class="btn btn-primary btn-block">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163a11.867 11.867 0 0 1-1.587-5.946C.16 5.335 5.495 0 12.05 0a11.81 11.81 0 0 1 8.413 3.488 11.824 11.824 0 0 1 3.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 0 1-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884a9.86 9.86 0 0 0 1.51 5.26l-.999 3.648 3.978-.607zM17.367 14.382c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.166-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.207-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.521.074-.793.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.625.712.227 1.36.195 1.872.118.571-.085 1.758-.719 2.006-1.413.247-.694.247-1.289.173-1.413z"/></svg>
-          Continuar por WhatsApp
-        </a>
-
-        <p class="conv-fineprint">
-          Tasa referencial del mercado. La tasa final puede variar según el método de pago y el horario bancario.
-        </p>
-      </div>
-    </aside>
+    <div class="hero-trust">
+      <div class="hero-trust-stars">★★★★★</div>
+      <span>+1000 pacientes confían en MENVI</span>
+    </div>
   </div>
-</header>
 
-<!-- LOGOS / TRUST BAR -->
-<section class="trustbar">
+  <div class="hero-scroll">
+    <span>Desliza</span>
+    <div class="hero-scroll-line"></div>
+  </div>
+</section>
+
+<!-- STATS SECTION -->
+<section class="stats">
   <div class="container">
-    <p class="trustbar-title">Operamos con los principales métodos de pago</p>
-    <div class="trustbar-grid">
-      <span>Zelle</span>
-      <span>PayPal</span>
-      <span>Binance</span>
-      <span>Nequi</span>
-      <span>Bancolombia</span>
-      <span>Mercantil</span>
-      <span>Banesco</span>
-      <span>BBVA</span>
-      <span>PIX</span>
-      <span>SPEI</span>
+    <div class="stats-grid">
+      <div class="stat">
+        <div class="stat-num"><span class="num" data-count="200">0</span><i>+</i></div>
+        <div class="stat-label">Monturas exclusivas</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num"><span class="num" data-count="15">0</span><i>+</i></div>
+        <div class="stat-label">Marcas premium</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num"><span class="num" data-count="1000">0</span><i>+</i></div>
+        <div class="stat-label">Clientes satisfechos</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num"><span class="num" data-count="100">0</span><i>%</i></div>
+        <div class="stat-label">Atención personalizada</div>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- STATS -->
-<section class="stats">
+<!-- INTRO / RESUMEN DE MARCA -->
+<section class="intro" id="marca">
   <div class="container">
-    <div class="stat">
-      <span class="stat-num" data-target="12000" data-suffix="+">0</span>
-      <span class="stat-label">Clientes activos</span>
+    <div class="section-head center" data-num="01">
+      <span class="kicker">Resumen de Marca</span>
+      <h2 class="section-title">Redefinimos el concepto tradicional de las ópticas</h2>
+      <p class="section-sub">Salud visual, estilo y experiencia premium en una sola marca.</p>
     </div>
-    <div class="stat">
-      <span class="stat-num" data-target="9">0</span>
-      <span class="stat-label">Países</span>
-    </div>
-    <div class="stat">
-      <span class="stat-num" data-target="986" data-suffix="+">0</span>
-      <span class="stat-label">Operaciones publicadas</span>
-    </div>
-    <div class="stat">
-      <span class="stat-num" data-target="100" data-suffix="%">0</span>
-      <span class="stat-label">Operaciones verificadas</span>
+
+    <div class="h-scroll h-scroll-pair pilares-grid">
+
+      <article class="pilar-card">
+        <div class="pilar-num">01</div>
+        <div class="pilar-line"></div>
+        <h3 class="pilar-title">Propósito</h3>
+        <p class="pilar-text">Mejorar la calidad de vida con una visión clara, precisa y con estilo.</p>
+      </article>
+
+      <article class="pilar-card">
+        <div class="pilar-num">02</div>
+        <div class="pilar-line"></div>
+        <h3 class="pilar-title">Misión</h3>
+        <p class="pilar-text">Soluciones integrales en salud visual con diagnósticos precisos y lentes de excelente calidad.</p>
+      </article>
+
+      <article class="pilar-card">
+        <div class="pilar-num">03</div>
+        <div class="pilar-line"></div>
+        <h3 class="pilar-title">Visión</h3>
+        <p class="pilar-text">Ser marca líder en Colombia, ofreciendo experiencias visuales excepcionales.</p>
+      </article>
+
     </div>
   </div>
 </section>
 
 <!-- SERVICIOS -->
-<section class="section" id="servicios">
+<section class="servicios" id="servicios">
   <div class="container">
-    <div class="section-head">
-      <span class="eyebrow">Nuestros servicios</span>
-      <h2>Una sola plataforma, todo el dinero del mundo.</h2>
-      <p>Movemos tu dinero por donde más te convenga: remesas tradicionales, transferencias entre cuentas o cripto. Tú eliges.</p>
+    <div class="section-head" data-num="02">
+      <span class="kicker">Nuestros servicios</span>
+      <h2 class="section-title">Soluciones integrales en salud visual</h2>
+      <p class="section-sub">Cada detalle transmite calidad: servicio, producto, empaque y atención.</p>
     </div>
 
-    <div class="cards">
-      <article class="card">
-        <div class="card-icon">
-          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 7h18M3 12h18M3 17h18"/><circle cx="6" cy="7" r="1.5" fill="currentColor"/><circle cx="18" cy="17" r="1.5" fill="currentColor"/></svg>
-        </div>
-        <h3>Envío de remesas</h3>
-        <p>Envía y recibe dinero en cualquier país de Latinoamérica con acreditación en minutos. Sin filas, sin oficinas.</p>
-        <ul>
-          <li>Zelle, PayPal y bancos de EE.UU.</li>
-          <li>Acreditación nacional en Colombia, México, Perú, Brasil…</li>
-          <li>Bolívares al mejor cambio en Venezuela</li>
-        </ul>
-      </article>
+    <div class="h-scroll svc-grid">
 
-      <article class="card card-featured">
-        <div class="card-icon">
-          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M16 8l-8 8M8.5 8.5L9 9M15 15l.5.5"/></svg>
+      <a href="#contacto" class="svc-card">
+        <div class="svc-card-img">
+          <img src="https://images.unsplash.com/photo-1582142306909-195724d33ffc?w=900&q=80" alt="Examen visual MENVI" />
         </div>
-        <h3>Compra y venta de USDT</h3>
-        <p>Compra USDT con tu moneda local o conviértelo a efectivo con la tasa más competitiva. Operaciones P2P verificadas.</p>
-        <ul>
-          <li>Red TRC20, ERC20, BEP20</li>
-          <li>Compra desde 20 USDT</li>
-          <li>Liberación inmediata</li>
-        </ul>
-        <span class="card-flag">Más solicitado</span>
-      </article>
+        <div class="svc-card-body">
+          <div class="svc-card-num">01 · Diagnóstico</div>
+          <h3 class="svc-card-title">Examen visual</h3>
+          <p class="svc-card-text">Diagnóstico preciso con tecnología de última generación.</p>
+          <span class="svc-card-link">Agendar cita →</span>
+        </div>
+      </a>
 
-      <article class="card">
-        <div class="card-icon">
-          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><path d="M3.27 6.96L12 12.01l8.73-5.05M12 22.08V12"/></svg>
+      <a href="#productos" class="svc-card">
+        <div class="svc-card-img">
+          <img src="https://images.unsplash.com/photo-1574258495973-f010dfbb5371?w=900&q=80" alt="Lentes oftálmicos" />
         </div>
-        <h3>Atención mayorista</h3>
-        <p>¿Eres comerciante o empresa? Tenemos tasas preferenciales para operaciones de alto volumen y atención dedicada.</p>
-        <ul>
-          <li>Cuenta corporativa</li>
-          <li>Tasas preferenciales</li>
-          <li>Soporte 1 a 1</li>
-        </ul>
-      </article>
+        <div class="svc-card-body">
+          <div class="svc-card-num">02 · Lentes oftálmicos</div>
+          <h3 class="svc-card-title">Visión clara y precisa</h3>
+          <p class="svc-card-text">Lentes de excelente calidad adaptados a tu fórmula.</p>
+          <span class="svc-card-link">Ver opciones →</span>
+        </div>
+      </a>
+
+      <a href="#productos" class="svc-card">
+        <div class="svc-card-img">
+          <img src="https://images.unsplash.com/photo-1511499767150-a48a237f0083?w=900&q=80" alt="Gafas de sol premium" />
+        </div>
+        <div class="svc-card-body">
+          <div class="svc-card-num">03 · Gafas de sol</div>
+          <h3 class="svc-card-title">Estilo con protección UV</h3>
+          <p class="svc-card-text">Monturas exclusivas para cada personalidad.</p>
+          <span class="svc-card-link">Explorar →</span>
+        </div>
+      </a>
+
+      <a href="#contacto" class="svc-card">
+        <div class="svc-card-img">
+          <img src="https://images.unsplash.com/photo-1483412033650-1015ddeb83d1?w=900&q=80" alt="Lentes de contacto MENVI" />
+        </div>
+        <div class="svc-card-body">
+          <div class="svc-card-num">04 · Lentes de contacto</div>
+          <h3 class="svc-card-title">Comodidad sin marco</h3>
+          <p class="svc-card-text">Adaptación profesional y opciones para cada estilo de vida.</p>
+          <span class="svc-card-link">Consultar →</span>
+        </div>
+      </a>
+
     </div>
   </div>
 </section>
 
-<!-- CÓMO FUNCIONA -->
-<section class="section section-dark" id="como">
-  <div class="container">
-    <div class="section-head">
-      <span class="eyebrow">Cómo funciona</span>
-      <h2>Tu dinero, en 4 pasos.</h2>
-      <p>Sin formularios eternos ni esperas absurdas. Así de simple.</p>
+<!-- PROPUESTA / SPLIT -->
+<section class="propuesta">
+  <div class="propuesta-wrap">
+    <div class="propuesta-img">
+      <img src="https://images.unsplash.com/photo-1556306535-0f09a537f0a3?w=1200&q=85" alt="MENVI Eyewear experiencia" />
+      <div class="propuesta-tag">
+        <span class="dot"></span>
+        Experiencia Premium
+      </div>
     </div>
-
-    <div class="steps">
-      <div class="step">
-        <span class="step-n">01</span>
-        <h4>Cotiza</h4>
-        <p>Usa la calculadora o escríbenos por WhatsApp con el monto que quieres enviar.</p>
-      </div>
-      <div class="step">
-        <span class="step-n">02</span>
-        <h4>Confirma</h4>
-        <p>Te confirmamos la tasa y los datos de la cuenta de destino. Cero letras chicas.</p>
-      </div>
-      <div class="step">
-        <span class="step-n">03</span>
-        <h4>Transfiere</h4>
-        <p>Realizas el pago por el método acordado (Zelle, PayPal, banco local, USDT, etc).</p>
-      </div>
-      <div class="step">
-        <span class="step-n">04</span>
-        <h4>Recibe</h4>
-        <p>Acreditamos en cuestión de minutos y te enviamos el comprobante. Listo.</p>
-      </div>
+    <div class="propuesta-content">
+      <span class="kicker">Posicionamiento</span>
+      <h2 class="section-title">Salud visual <span class="plus">+</span> Estilo <span class="plus">+</span> Experiencia premium</h2>
+      <p class="propuesta-text">Una marca que transforma la forma de ver el mundo y eleva el estilo personal.</p>
+      <ul class="propuesta-list">
+        <li><svg viewBox="0 0 24 24" fill="none"><path d="M5 12l5 5L20 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Diagnósticos precisos</li>
+        <li><svg viewBox="0 0 24 24" fill="none"><path d="M5 12l5 5L20 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Lentes de excelente calidad</li>
+        <li><svg viewBox="0 0 24 24" fill="none"><path d="M5 12l5 5L20 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Atención cercana y confiable</li>
+        <li><svg viewBox="0 0 24 24" fill="none"><path d="M5 12l5 5L20 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Empaque y servicio premium</li>
+      </ul>
+      <a href="#contacto" class="btn btn-dark">Vive la experiencia MENVI</a>
     </div>
   </div>
 </section>
 
-<!-- PAÍSES -->
-<section class="section" id="paises">
-  <div class="container">
-    <div class="section-head">
-      <span class="eyebrow">Países cubiertos</span>
-      <h2>Tu dinero llega donde lo necesites.</h2>
-      <p>9 países, una sola plataforma. Y vamos por más.</p>
+<!-- PRODUCTOS -->
+<section class="productos" id="productos">
+  <div class="productos-wrap">
+    <div class="section-head" data-num="03">
+      <span class="kicker">Colección exclusiva</span>
+      <h2 class="section-title">Productos MENVI</h2>
+      <p class="section-sub">Diseño, durabilidad y elegancia en cada pieza.</p>
     </div>
 
-    <div class="countries">
-      <div class="country"><span class="cflag">🇻🇪</span><span>Venezuela</span><small>VES</small></div>
-      <div class="country"><span class="cflag">🇨🇴</span><span>Colombia</span><small>COP</small></div>
-      <div class="country"><span class="cflag">🇲🇽</span><span>México</span><small>MXN</small></div>
-      <div class="country"><span class="cflag">🇵🇪</span><span>Perú</span><small>PEN</small></div>
-      <div class="country"><span class="cflag">🇧🇷</span><span>Brasil</span><small>BRL</small></div>
-      <div class="country"><span class="cflag">🇨🇱</span><span>Chile</span><small>CLP</small></div>
-      <div class="country"><span class="cflag">🇦🇷</span><span>Argentina</span><small>ARS</small></div>
-      <div class="country"><span class="cflag">🇵🇾</span><span>Paraguay</span><small>PYG</small></div>
-      <div class="country"><span class="cflag">🇺🇸</span><span>Estados Unidos</span><small>USD</small></div>
-    </div>
-  </div>
-</section>
+    <div class="h-scroll prod-grid">
 
-<!-- POR QUÉ -->
-<section class="section section-dark" id="porque">
-  <div class="container">
-    <div class="section-head">
-      <span class="eyebrow">Por qué UNICAMBIOSVE</span>
-      <h2>El cambio que tu dinero estaba esperando.</h2>
-    </div>
+      <article class="prod-card">
+        <div class="prod-card-img">
+          <img src="https://images.unsplash.com/photo-1508296695146-257a814070b4?w=900&q=80" alt="Monturas oftálmicas" />
+          <span class="prod-card-badge">01</span>
+        </div>
+        <div class="prod-card-body">
+          <h3 class="prod-card-title">Monturas Oftálmicas</h3>
+          <p class="prod-card-text">Diseños minimalistas con materiales premium.</p>
+          <a href="#contacto" class="btn-link">Ver catálogo
+            <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          </a>
+        </div>
+      </article>
 
-    <div class="benefits">
-      <div class="benefit">
-        <div class="benefit-icon">
-          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2l8 4v6c0 5-3.5 9-8 10-4.5-1-8-5-8-10V6l8-4z"/></svg>
+      <article class="prod-card">
+        <div class="prod-card-img">
+          <img src="https://images.unsplash.com/photo-1572635196237-14b3f281503f?w=900&q=80" alt="Gafas de sol" />
+          <span class="prod-card-badge">02</span>
         </div>
-        <h4>Operaciones verificadas</h4>
-        <p>Cada movimiento queda documentado y cuenta con respaldo. Tu seguridad es la base de todo.</p>
-      </div>
-      <div class="benefit">
-        <div class="benefit-icon">
-          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+        <div class="prod-card-body">
+          <h3 class="prod-card-title">Gafas de Sol</h3>
+          <p class="prod-card-text">Filtros UV400 y diseños de marcas reconocidas.</p>
+          <a href="#contacto" class="btn-link">Ver catálogo
+            <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          </a>
         </div>
-        <h4>Entrega en minutos</h4>
-        <p>Sin esperas. La mayoría de nuestras operaciones se cierran en menos de 15 minutos.</p>
-      </div>
-      <div class="benefit">
-        <div class="benefit-icon">
-          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 3v18h18"/><path d="M7 14l4-4 4 4 5-5"/></svg>
+      </article>
+
+      <article class="prod-card">
+        <div class="prod-card-img">
+          <img src="https://images.unsplash.com/photo-1483412033650-1015ddeb83d1?w=900&q=80" alt="Lentes de contacto" />
+          <span class="prod-card-badge">03</span>
         </div>
-        <h4>Mejor tasa del mercado</h4>
-        <p>Trabajamos con márgenes mínimos y tasas competitivas. Nada de comisiones ocultas.</p>
-      </div>
-      <div class="benefit">
-        <div class="benefit-icon">
-          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+        <div class="prod-card-body">
+          <h3 class="prod-card-title">Lentes de Contacto</h3>
+          <p class="prod-card-text">Cómodos, seguros y con adaptación profesional.</p>
+          <a href="#contacto" class="btn-link">Ver catálogo
+            <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          </a>
         </div>
-        <h4>Atención humana</h4>
-        <p>Hablas con personas, no con bots. Escríbenos por WhatsApp y tendrás respuesta en minutos.</p>
-      </div>
+      </article>
+
+      <article class="prod-card">
+        <div class="prod-card-img">
+          <img src="https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?w=900&q=80" alt="Lentes premium" />
+          <span class="prod-card-badge">04</span>
+        </div>
+        <div class="prod-card-body">
+          <h3 class="prod-card-title">Lentes Premium</h3>
+          <p class="prod-card-text">Antirreflejo, filtro azul, fotocromáticos y progresivos.</p>
+          <a href="#contacto" class="btn-link">Ver catálogo
+            <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          </a>
+        </div>
+      </article>
+
     </div>
   </div>
 </section>
 
 <!-- TESTIMONIOS -->
-<section class="section">
-  <div class="container">
-    <div class="section-head">
-      <span class="eyebrow">Lo que dicen nuestros clientes</span>
-      <h2>Más de 12.000 personas ya confían en nosotros.</h2>
+<section class="testimonios">
+  <div class="testimonios-wrap">
+    <div class="section-head center" data-num="04">
+      <span class="kicker">Experiencias reales</span>
+      <h2 class="section-title">Lo que dicen nuestros pacientes</h2>
     </div>
 
-    <div class="testimonials">
-      <div class="testimonial">
-        <div class="stars">★★★★★</div>
-        <p>"Excelente atención, llevo más de un año operando con ellos. Las tasas son las mejores de Venezuela y la entrega es instantánea."</p>
-        <div class="t-author">
-          <span class="t-avatar" style="background:linear-gradient(135deg,#14e8c1,#22ff7a)">D</span>
-          <div><b>Daniela R.</b><small>Caracas, VE</small></div>
+    <div class="h-scroll test-grid">
+
+      <article class="test-card">
+        <div class="test-stars">★★★★★</div>
+        <p class="test-text">"Atención increíble. Me ayudaron a elegir monturas perfectas para mi rostro y estilo."</p>
+        <div class="test-author">
+          <div class="test-avatar">VC</div>
+          <div>
+            <b>Valentina Castro</b>
+            <span>Cliente · Bogotá</span>
+          </div>
         </div>
+      </article>
+
+      <article class="test-card">
+        <div class="test-stars">★★★★★</div>
+        <p class="test-text">"Desde el empaque hasta la asesoría, todo transmite calidad. Una experiencia premium."</p>
+        <div class="test-author">
+          <div class="test-avatar">AR</div>
+          <div>
+            <b>Andrés Rojas</b>
+            <span>Cliente · Medellín</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="test-card">
+        <div class="test-stars">★★★★★</div>
+        <p class="test-text">"Diagnóstico claro y productos de excelente calidad. Servicio al cliente impecable."</p>
+        <div class="test-author">
+          <div class="test-avatar">LM</div>
+          <div>
+            <b>Laura Mendoza</b>
+            <span>Cliente · Cali</span>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- GALERIA -->
+<section class="galeria" id="galeria">
+  <div class="galeria-wrap">
+    <div class="section-head" data-num="05">
+      <span class="kicker">Estilo MENVI</span>
+      <h2 class="section-title">Una mirada a nuestra colección</h2>
+    </div>
+
+    <div class="h-scroll h-scroll-pair gal-grid">
+      <div class="gal-item wide">
+        <img src="https://images.unsplash.com/photo-1512496015851-a90fb38ba796?w=1400&q=85" alt="Colección MENVI" />
+        <span class="gal-item-tag">Colección 2026</span>
       </div>
-      <div class="testimonial">
-        <div class="stars">★★★★★</div>
-        <p>"Hago todas mis remesas con UNICAMBIOSVE desde Bogotá. Súper confiables y siempre disponibles, incluso fines de semana."</p>
-        <div class="t-author">
-          <span class="t-avatar" style="background:linear-gradient(135deg,#7bf1ad,#14e8c1)">J</span>
-          <div><b>Jhon M.</b><small>Bogotá, CO</small></div>
-        </div>
+      <div class="gal-item">
+        <img src="https://images.unsplash.com/photo-1473496169904-658ba7c44d8a?w=900&q=80" alt="Monturas elegantes" />
+        <span class="gal-item-tag">Oftálmicas</span>
       </div>
-      <div class="testimonial">
-        <div class="stars">★★★★★</div>
-        <p>"Compré mis primeros USDT con ellos y me explicaron todo paso a paso. Cero estrés, llegó la transferencia en 5 minutos."</p>
-        <div class="t-author">
-          <span class="t-avatar" style="background:linear-gradient(135deg,#22ff7a,#7bf1ad)">S</span>
-          <div><b>Sofía P.</b><small>Lima, PE</small></div>
-        </div>
+      <div class="gal-item">
+        <img src="https://images.unsplash.com/photo-1577803645773-f96470509666?w=900&q=80" alt="Gafas de sol" />
+        <span class="gal-item-tag">Sol</span>
+      </div>
+      <div class="gal-item">
+        <img src="https://images.unsplash.com/photo-1604785601252-50dca8f43e3a?w=900&q=80" alt="Detalle premium" />
+        <span class="gal-item-tag">Premium</span>
+      </div>
+      <div class="gal-item">
+        <img src="https://images.unsplash.com/photo-1574258495973-f010dfbb5371?w=900&q=80" alt="Monturas modernas" />
+        <span class="gal-item-tag">Modernas</span>
+      </div>
+      <div class="gal-item">
+        <img src="https://images.unsplash.com/photo-1556306535-0f09a537f0a3?w=900&q=80" alt="Estilo MENVI" />
+        <span class="gal-item-tag">Estilo</span>
+      </div>
+      <div class="gal-item">
+        <img src="https://images.unsplash.com/photo-1483412033650-1015ddeb83d1?w=900&q=80" alt="Lentes de contacto" />
+        <span class="gal-item-tag">Contacto</span>
       </div>
     </div>
   </div>
 </section>
 
-<!-- FAQ -->
-<section class="section section-dark" id="faq">
-  <div class="container">
-    <div class="section-head">
-      <span class="eyebrow">Preguntas frecuentes</span>
-      <h2>Resolvemos tus dudas.</h2>
+<!-- CTA BANNER -->
+<section class="cta-banner">
+  <div class="cta-banner-wrap">
+    <div class="cta-banner-bg" aria-hidden="true">
+      <img src="https://images.unsplash.com/photo-1577803645773-f96470509666?w=1800&q=85" alt="" />
     </div>
-
-    <div class="faq">
-      <details>
-        <summary>¿Cómo inicio mi primera operación?</summary>
-        <p>Solo escríbenos por WhatsApp al +57 323 394 7051 o usa la calculadora de la parte superior. Te confirmamos la tasa, te pasamos los datos y listo.</p>
-      </details>
-      <details>
-        <summary>¿Cuánto demora una remesa?</summary>
-        <p>La gran mayoría de operaciones se acreditan en menos de 15 minutos, una vez confirmado tu pago. En horarios bancarios fuera de operación puede tomar un poco más.</p>
-      </details>
-      <details>
-        <summary>¿Qué monto mínimo puedo enviar o cambiar?</summary>
-        <p>Operamos desde 20 USD / 20 USDT para clientes nuevos. Para operaciones mayoristas tenemos tasas preferenciales.</p>
-      </details>
-      <details>
-        <summary>¿Es seguro operar con ustedes?</summary>
-        <p>Sí. Llevamos años operando con miles de clientes activos, todas nuestras operaciones quedan registradas y cuentan con comprobante.</p>
-      </details>
-      <details>
-        <summary>¿Qué redes de USDT manejan?</summary>
-        <p>TRC20 (Tron), ERC20 (Ethereum) y BEP20 (BSC). Recomendamos TRC20 por sus bajas comisiones.</p>
-      </details>
-      <details>
-        <summary>¿Puedo recibir el dinero en mi banco local?</summary>
-        <p>Sí. Tenemos cuentas en los principales bancos de Colombia, Venezuela, México, Perú, Brasil, Chile, Argentina y Paraguay.</p>
-      </details>
+    <div class="cta-banner-content">
+      <span class="cta-banner-kicker">⏱ Oferta por tiempo limitado</span>
+      <h2 class="cta-banner-title">Examen visual <em>gratis</em><br/>al adquirir tus monturas</h2>
+      <p class="cta-banner-text">Reserva esta semana y obtén además 15% en tus lentes de alta calidad.</p>
+      <div class="cta-banner-actions">
+        <a href="#contacto" class="btn btn-light btn-magnetic btn-pulse">
+          <span>Reservar mi cupo</span>
+          <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        </a>
+        <a href="https://wa.me/573000000000?text=Hola%20MENVI%2C%20quiero%20aprovechar%20la%20oferta" class="btn btn-outline-light">
+          <span>Escribir por WhatsApp</span>
+        </a>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- CTA FINAL -->
-<section class="cta-final">
-  <div class="container">
-    <div class="cta-card">
-      <div>
-        <h2>¿Listo para tu próximo envío?</h2>
-        <p>Escríbenos ahora y te atendemos en menos de 5 minutos.</p>
-      </div>
-      <div class="cta-buttons">
-        <a href="https://wa.me/573233947051?text=Hola%2C%20quiero%20realizar%20una%20operación" target="_blank" rel="noopener" class="btn btn-primary btn-lg">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163a11.867 11.867 0 0 1-1.587-5.946C.16 5.335 5.495 0 12.05 0a11.81 11.81 0 0 1 8.413 3.488 11.824 11.824 0 0 1 3.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 0 1-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884a9.86 9.86 0 0 0 1.51 5.26l-.999 3.648 3.978-.607zM17.367 14.382c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.166-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.207-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.521.074-.793.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.625.712.227 1.36.195 1.872.118.571-.085 1.758-.719 2.006-1.413.247-.694.247-1.289.173-1.413z"/></svg>
-          Iniciar operación
+<!-- CONTACTO -->
+<section class="contacto" id="contacto">
+  <div class="contacto-wrap">
+    <div class="section-head center">
+      <span class="kicker">Hablemos</span>
+      <h2 class="section-title">Agenda tu examen visual</h2>
+      <p class="section-sub">Cuéntanos sobre ti y nos pondremos en contacto.</p>
+    </div>
+
+    <div class="contacto-grid">
+      <div class="contacto-info">
+        <div class="contacto-item">
+          <div class="contacto-icon">
+            <svg viewBox="0 0 24 24" fill="none"><rect x="2" y="4" width="20" height="16" rx="2" stroke="currentColor" stroke-width="1.6"/><polyline points="22,6 12,13 2,6" stroke="currentColor" stroke-width="1.6" fill="none"/></svg>
+          </div>
+          <div>
+            <small>Correo electrónico</small>
+            <b>opticasmenvi@hotmail.com</b>
+          </div>
+        </div>
+        <a href="https://www.instagram.com/menvieyewear/" class="contacto-item" target="_blank" rel="noopener">
+          <div class="contacto-icon">
+            <svg viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="4" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.6"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>
+          </div>
+          <div>
+            <small>Instagram</small>
+            <b>@menvieyewear</b>
+          </div>
         </a>
-        <a href="https://instagram.com/unicambiosve" target="_blank" rel="noopener" class="btn btn-ghost btn-lg">
-          @unicambiosve
-        </a>
+        <div class="contacto-item">
+          <div class="contacto-icon">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3V2z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
+          </div>
+          <div>
+            <small>Facebook</small>
+            <b>MENVI Eyewear</b>
+          </div>
+        </div>
+        <div class="contacto-item">
+          <div class="contacto-icon">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M19 7v6a5 5 0 11-5-5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><path d="M14 2v10" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><path d="M14 2a5 5 0 005 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+          </div>
+          <div>
+            <small>TikTok</small>
+            <b>@menvieyewear</b>
+          </div>
+        </div>
       </div>
+
+      <form class="contacto-form" onsubmit="event.preventDefault(); this.querySelector('button').textContent='Solicitud enviada ✓'; this.reset();">
+        <h3>Solicita tu cita</h3>
+        <div class="field">
+          <input type="text" required placeholder=" " />
+          <label>Nombre completo</label>
+        </div>
+        <div class="field-row">
+          <div class="field">
+            <input type="tel" required placeholder=" " />
+            <label>Teléfono</label>
+          </div>
+          <div class="field">
+            <input type="email" required placeholder=" " />
+            <label>Correo</label>
+          </div>
+        </div>
+        <div class="field">
+          <select required>
+            <option value="">Selecciona un servicio</option>
+            <option>Examen visual</option>
+            <option>Monturas oftálmicas</option>
+            <option>Gafas de sol</option>
+            <option>Lentes de contacto</option>
+            <option>Otra consulta</option>
+          </select>
+          <label class="floating">Servicio de interés</label>
+        </div>
+        <div class="field">
+          <textarea rows="4" placeholder=" "></textarea>
+          <label>Cuéntanos brevemente lo que necesitas</label>
+        </div>
+        <button type="submit" class="btn btn-dark btn-full">Enviar solicitud</button>
+      </form>
     </div>
   </div>
 </section>
 
 <!-- FOOTER -->
 <footer class="footer">
-  <div class="container footer-inner">
-    <div class="footer-brand">
-      <img src="LOGO.png" alt="UNICAMBIOSVE" class="footer-logo" />
-      <p>Remesas internacionales y compra/venta de USDT con la mejor tasa del mercado. Operando en 9 países de Latinoamérica.</p>
+  <div class="footer-inner">
+    <div class="footer-col footer-col-brand">
+      <a href="#top" class="logo logo-footer">
+        <img src="LOGO.png" alt="MENVI Eyewear" class="logo-img logo-img-footer" />
+      </a>
+      <p>Óptica moderna que integra salud visual, estilo y experiencia premium.</p>
+      <p class="footer-tag"><em>Transformamos tu forma de ver el mundo.</em></p>
     </div>
-
     <div class="footer-col">
-      <h5>Servicios</h5>
-      <ul>
-        <li><a href="#servicios">Envío de remesas</a></li>
-        <li><a href="#servicios">Compra/venta USDT</a></li>
-        <li><a href="#servicios">Atención mayorista</a></li>
-      </ul>
+      <h5>Productos</h5>
+      <a href="#productos">Monturas Oftálmicas</a>
+      <a href="#productos">Gafas de Sol</a>
+      <a href="#productos">Lentes de Contacto</a>
+      <a href="#servicios">Examen Visual</a>
     </div>
-
-    <div class="footer-col">
-      <h5>Compañía</h5>
-      <ul>
-        <li><a href="#porque">Por qué nosotros</a></li>
-        <li><a href="#paises">Países</a></li>
-        <li><a href="#faq">FAQ</a></li>
-      </ul>
-    </div>
-
     <div class="footer-col">
       <h5>Contacto</h5>
-      <ul>
-        <li><a href="https://wa.me/573233947051" target="_blank" rel="noopener">WhatsApp: +57 323 394 7051</a></li>
-        <li><a href="https://instagram.com/unicambiosve" target="_blank" rel="noopener">Instagram: @unicambiosve</a></li>
-        <li><a href="mailto:unicambiosve@gmail.com">unicambiosve@gmail.com</a></li>
-      </ul>
+      <a href="mailto:opticasmenvi@hotmail.com">opticasmenvi@hotmail.com</a>
+      <a href="#contacto">Agendar cita</a>
+    </div>
+    <div class="footer-col">
+      <h5>Síguenos</h5>
+      <div class="social">
+        <a href="https://www.instagram.com/menvieyewear/" aria-label="Instagram" target="_blank" rel="noopener">IG</a>
+        <a href="https://www.facebook.com/menvieyewear" aria-label="Facebook" target="_blank" rel="noopener">FB</a>
+        <a href="https://www.tiktok.com/@menvieyewear" aria-label="TikTok" target="_blank" rel="noopener">TT</a>
+      </div>
+      <a href="https://www.instagram.com/menvieyewear/" class="footer-handle" target="_blank" rel="noopener">@menvieyewear</a>
     </div>
   </div>
-
   <div class="footer-bottom">
-    <div class="container">
-      <small>&copy; <span id="year"></span> UNICAMBIOSVE. Todos los derechos reservados.</small>
-      <small>Tasas referenciales basadas en mercado abierto. Sujetas a confirmación en cada operación.</small>
-    </div>
+    <span>© 2026 MENVI Eyewear · Todos los derechos reservados.</span>
+    <span>Transformamos tu forma de ver el mundo</span>
   </div>
 </footer>
 
-<!-- WHATSAPP FLOATING BUTTON -->
-<a href="https://wa.me/573233947051?text=Hola%2C%20quiero%20info%20sobre%20UNICAMBIOSVE" target="_blank" rel="noopener" class="wa-float" aria-label="Chatear por WhatsApp">
-  <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163a11.867 11.867 0 0 1-1.587-5.946C.16 5.335 5.495 0 12.05 0a11.81 11.81 0 0 1 8.413 3.488 11.824 11.824 0 0 1 3.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 0 1-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884a9.86 9.86 0 0 0 1.51 5.26l-.999 3.648 3.978-.607zM17.367 14.382c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.166-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.207-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.521.074-.793.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.625.712.227 1.36.195 1.872.118.571-.085 1.758-.719 2.006-1.413.247-.694.247-1.289.173-1.413z"/></svg>
+<!-- FLOATING WHATSAPP -->
+<a href="https://wa.me/573000000000?text=Hola%20MENVI%2C%20quiero%20agendar%20un%20examen%20visual" class="wa-float" aria-label="WhatsApp" target="_blank" rel="noopener">
+  <svg viewBox="0 0 32 32" fill="currentColor"><path d="M16 3C9 3 3.4 8.6 3.4 15.6c0 2.3.6 4.5 1.7 6.4L3 29l7.2-2c1.8 1 3.8 1.5 5.8 1.5h.1c7 0 12.6-5.6 12.6-12.6S23 3 16 3zm0 22.9c-1.7 0-3.4-.4-4.8-1.3l-.3-.2-3.6 1 1-3.5-.2-.4c-1-1.6-1.5-3.4-1.5-5.3 0-5.5 4.5-10 10-10s10 4.5 10 10-4.5 9.7-10 9.7zm5.5-7.2c-.3-.2-1.8-.9-2-1s-.5-.2-.7.2-.8 1-1 1.2-.4.2-.7 0c-1.8-.9-3-1.6-4.2-3.6-.3-.6.3-.5.9-1.7.1-.2 0-.4 0-.6l-1-2.3c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4s-1.1 1.1-1.1 2.6 1.1 3 1.3 3.2 2.2 3.4 5.4 4.7c.7.3 1.3.5 1.8.7.8.2 1.5.2 2 .1.6-.1 1.8-.7 2.1-1.5.3-.7.3-1.4.2-1.5-.1-.2-.3-.3-.6-.4z"/></svg>
+  <span class="wa-float-pulse"></span>
+  <span class="wa-float-tooltip">Agenda por WhatsApp</span>
 </a>
 
-<!-- CURRENCY PICKER MODAL -->
-<div class="picker-overlay" id="picker-overlay" aria-hidden="true">
-  <div class="picker">
-    <div class="picker-head">
-      <h4 id="picker-title">Selecciona moneda</h4>
-      <button id="picker-close" class="picker-close" aria-label="Cerrar">×</button>
-    </div>
-    <input type="text" id="picker-search" placeholder="Buscar país o moneda…" />
-    <ul id="picker-list" class="picker-list"></ul>
-  </div>
+<!-- MOBILE STICKY CTA BAR -->
+<div class="mobile-cta" id="mobileCta">
+  <a href="https://wa.me/573000000000?text=Hola%20MENVI%2C%20quiero%20agendar%20un%20examen%20visual" class="mobile-cta-wa" target="_blank" rel="noopener">
+    <svg viewBox="0 0 32 32" fill="currentColor"><path d="M16 3C9 3 3.4 8.6 3.4 15.6c0 2.3.6 4.5 1.7 6.4L3 29l7.2-2c1.8 1 3.8 1.5 5.8 1.5h.1c7 0 12.6-5.6 12.6-12.6S23 3 16 3z"/></svg>
+    WhatsApp
+  </a>
+  <a href="#contacto" class="mobile-cta-main">
+    <span>Agendar examen visual</span>
+    <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+  </a>
 </div>
 
 <script src="script.js"></script>
