@@ -1,218 +1,520 @@
-/* ================================================================
-   MENVI EYEWEAR — Interactions
-================================================================ */
+/* =========================================================
+   UNICAMBIOSVE · Landing JS
+   - Loader
+   - Mobile nav
+   - Stat counters
+   - Currency picker
+   - Live FX (open.er-api.com) + USDT (CoinGecko)
+   - Live ticker
+   ========================================================= */
 
-(function () {
+(() => {
   'use strict';
 
-  // ============ LOADER · animated counter + premium exit ============
-  const loader = document.getElementById('loader');
-  const counter = document.getElementById('loaderCounter');
-  const TOTAL_LOAD_MS = 2400; // synced with bar-fill animation
-  const startTime = performance.now();
-
-  const tickCounter = (now) => {
-    if (!counter) return;
-    const elapsed = now - startTime;
-    const t = Math.min(elapsed / TOTAL_LOAD_MS, 1);
-    const eased = 1 - Math.pow(1 - t, 1.6);
-    const val = Math.floor(eased * 100);
-    counter.textContent = String(val).padStart(2, '0');
-    if (t < 1) requestAnimationFrame(tickCounter);
-    else counter.textContent = '100';
-  };
-  requestAnimationFrame(tickCounter);
-
-  const hideLoader = () => {
-    if (loader) loader.classList.add('done');
-  };
-  // Hide either when page loads OR after min duration — whichever is later
-  let pageLoaded = false;
-  let minDurationElapsed = false;
-  const tryHide = () => {
-    if (pageLoaded && minDurationElapsed) hideLoader();
-  };
-  window.addEventListener('load', () => { pageLoaded = true; tryHide(); });
-  setTimeout(() => { minDurationElapsed = true; tryHide(); }, TOTAL_LOAD_MS + 400);
-  // Fallback in case page never fires load
-  setTimeout(() => { if (loader && !loader.classList.contains('done')) loader.classList.add('done'); }, 5000);
-
-  // ============ NAV SCROLL ============
-  const nav = document.getElementById('nav');
-  const marquee = document.querySelector('.marquee');
-  const onScroll = () => {
-    const y = window.scrollY;
-    if (nav) {
-      if (y > 40) nav.classList.add('scrolled');
-      else nav.classList.remove('scrolled');
-    }
-    if (marquee) {
-      if (y > 40) marquee.classList.add('hidden');
-      else marquee.classList.remove('hidden');
-    }
-  };
-  window.addEventListener('scroll', onScroll, { passive: true });
-  onScroll();
-
-  // ============ BURGER MENU ============
-  const burger = document.getElementById('burger');
-  const navLinks = document.querySelector('.nav-links');
-  if (burger && navLinks) {
-    burger.addEventListener('click', () => {
-      navLinks.classList.toggle('open');
-    });
-    navLinks.querySelectorAll('a').forEach(a => {
-      a.addEventListener('click', () => navLinks.classList.remove('open'));
-    });
-  }
-
-  // ============ SIDE INDICATOR ============
-  const sections = [
-    { id: 'top',       num: '01', label: 'Inicio' },
-    { id: 'marca',     num: '02', label: 'La Marca' },
-    { id: 'servicios', num: '03', label: 'Servicios' },
-    { id: 'productos', num: '04', label: 'Productos' },
-    { id: 'galeria',   num: '05', label: 'Estilo' },
-    { id: 'contacto',  num: '06', label: 'Contacto' },
+  /* ---------- CONFIG ---------- */
+  const CURRENCIES = [
+    { code: 'USD', name: 'Dólar estadounidense', country: 'Estados Unidos', flag: '🇺🇸' },
+    { code: 'VES', name: 'Bolívar venezolano',   country: 'Venezuela',      flag: '🇻🇪' },
+    { code: 'COP', name: 'Peso colombiano',      country: 'Colombia',       flag: '🇨🇴' },
+    { code: 'MXN', name: 'Peso mexicano',        country: 'México',         flag: '🇲🇽' },
+    { code: 'PEN', name: 'Sol peruano',          country: 'Perú',           flag: '🇵🇪' },
+    { code: 'BRL', name: 'Real brasileño',       country: 'Brasil',         flag: '🇧🇷' },
+    { code: 'CLP', name: 'Peso chileno',         country: 'Chile',          flag: '🇨🇱' },
+    { code: 'ARS', name: 'Peso argentino',       country: 'Argentina',      flag: '🇦🇷' },
+    { code: 'PYG', name: 'Guaraní paraguayo',    country: 'Paraguay',       flag: '🇵🇾' },
   ];
-  const sideIndicator = document.getElementById('sideIndicator');
-  const sideNum   = sideIndicator?.querySelector('.side-num');
-  const sideTotal = sideIndicator?.querySelector('.side-total');
-  const sideLabel = sideIndicator?.querySelector('.side-label');
-  if (sideTotal) sideTotal.textContent = String(sections.length).padStart(2, '0');
+  const CRYPTO = [
+    { code: 'USDT', name: 'Tether',              country: 'Stablecoin',     flag: '💠' }
+  ];
 
-  const updateIndicator = () => {
-    if (!sideIndicator) return;
-    const y = window.scrollY + window.innerHeight * 0.4;
-    let current = sections[0];
-    sections.forEach(s => {
-      const el = document.getElementById(s.id);
-      if (el && el.offsetTop <= y) current = s;
-    });
-    if (sideNum)   sideNum.textContent = current.num;
-    if (sideLabel) sideLabel.textContent = current.label;
+  const WHATSAPP = '573233947051';
+  // Fuentes en tiempo real (sin API key, CORS-enabled, refresco frecuente)
+  const FX_PRIMARY  = 'https://api.coinbase.com/v2/exchange-rates?currency=USD';
+  const FX_FALLBACK = 'https://open.er-api.com/v6/latest/USD';
+  const COINGECKO_API = 'https://api.coingecko.com/api/v3/simple/price?ids=tether&vs_currencies=usd&include_24hr_change=true';
+  const REFRESH_MS  = 15 * 1000;   // refresco cada 15s
+  const TIME_AGO_MS = 1000;        // re-renderizar "hace X" cada 1s
+
+  /* ---------- STATE ---------- */
+  const state = {
+    mode: 'remesa',                 // 'remesa' | 'usdt'
+    send:  { code: 'USD', amount: 100 },
+    recv:  { code: 'COP' },
+    rates: {},                       // USD-based rates
+    usdtUsd: 1,                      // USDT price in USD
+    lastUpdate: null,
+    target: 'send',                  // which field the picker edits
   };
-  window.addEventListener('scroll', updateIndicator, { passive: true });
-  updateIndicator();
 
-  // ============ REVEAL ON SCROLL ============
-  const revealTargets = document.querySelectorAll(
-    '.section-head, .pilar-card, .svc-card, .prod-card, .test-card, ' +
-    '.gal-item, .contacto-item, .propuesta-content, .propuesta-img, ' +
-    '.cta-banner-content, .stat'
-  );
-  revealTargets.forEach(el => el.classList.add('reveal'));
+  /* ---------- HELPERS ---------- */
+  const $ = sel => document.querySelector(sel);
+  const $$ = sel => document.querySelectorAll(sel);
 
-  if ('IntersectionObserver' in window) {
-    const io = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('in');
-          io.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.12, rootMargin: '0px 0px -50px 0px' });
+  const fmtNumber = (n, opts = {}) => {
+    if (!isFinite(n)) return '—';
+    const max = opts.max ?? 2;
+    const min = Math.min(opts.min ?? 2, max);
+    return new Intl.NumberFormat('es-ES', {
+      maximumFractionDigits: max,
+      minimumFractionDigits: min,
+    }).format(n);
+  };
 
-    revealTargets.forEach(el => io.observe(el));
-  } else {
-    revealTargets.forEach(el => el.classList.add('in'));
+  // Formato fijo de monto (siempre 2 decimales, con separador de miles)
+  const fmtAmount = n => fmtNumber(n, { max: 2, min: 2 });
+
+  // Formato de tasa con precisión adaptativa
+  const fmtRate = n => {
+    if (!isFinite(n)) return '—';
+    let max;
+    if (n >= 100)   max = 4;   // 3729.5274
+    else if (n >= 1)    max = 6;   // 5.024250
+    else if (n >= 0.01) max = 8;   // 0.04253712
+    else                max = 10;  // 0.0001234567
+    return fmtNumber(n, { max, min: max });
+  };
+
+  const findCcy = code => [...CURRENCIES, ...CRYPTO].find(c => c.code === code);
+
+  const timeAgo = ts => {
+    if (!ts) return '—';
+    const diff = Math.max(0, Math.floor((Date.now() - ts) / 1000));
+    if (diff < 60) return `hace ${diff}s`;
+    if (diff < 3600) return `hace ${Math.floor(diff/60)} min`;
+    if (diff < 86400) return `hace ${Math.floor(diff/3600)} h`;
+    return new Date(ts).toLocaleString('es-ES');
+  };
+
+  /* ---------- LOADER ---------- */
+  window.addEventListener('load', () => {
+    setTimeout(() => $('#loader').classList.add('hidden'), 500);
+  });
+
+  /* ---------- YEAR ---------- */
+  $('#year').textContent = new Date().getFullYear();
+
+  /* ---------- MOBILE NAV ---------- */
+  const burger = $('#burger');
+  const nav = $('#nav');
+  if (burger) {
+    burger.addEventListener('click', () => {
+      nav.classList.toggle('nav-mobile-open');
+      burger.classList.toggle('open');
+    });
+    $$('.nav-links a').forEach(a => a.addEventListener('click', () => {
+      nav.classList.remove('nav-mobile-open');
+      burger.classList.remove('open');
+    }));
   }
 
-  // ============ SMOOTH ANCHOR ============
-  document.querySelectorAll('a[href^="#"]').forEach(link => {
-    link.addEventListener('click', (e) => {
-      const href = link.getAttribute('href');
-      if (!href || href === '#') return;
-      const target = document.querySelector(href);
-      if (!target) return;
-      e.preventDefault();
-      const offset = 80;
-      const top = target.getBoundingClientRect().top + window.scrollY - offset;
-      window.scrollTo({ top, behavior: 'smooth' });
+  /* ---------- STAT COUNTERS ---------- */
+  const counters = $$('.stat-num');
+  const counterObserver = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      const el = entry.target;
+      const target = +el.dataset.target;
+      const suffix = el.dataset.suffix || '';
+      const duration = 1500;
+      const start = performance.now();
+      const step = now => {
+        const t = Math.min(1, (now - start) / duration);
+        const eased = 1 - Math.pow(1 - t, 3);
+        const val = Math.floor(target * eased);
+        el.textContent = val.toLocaleString('es-ES') + suffix;
+        if (t < 1) requestAnimationFrame(step);
+        else el.textContent = target.toLocaleString('es-ES') + suffix;
+      };
+      requestAnimationFrame(step);
+      counterObserver.unobserve(el);
+    });
+  }, { threshold: 0.4 });
+  counters.forEach(c => counterObserver.observe(c));
+
+  /* =========================================================
+     CONVERTER
+     ========================================================= */
+
+  const els = {
+    sendAmount: $('#send-amount'),
+    sendCode:   $('#send-code'),
+    sendFlag:   $('#send-flag'),
+    sendBtn:    $('#send-currency-btn'),
+    recvAmount: $('#recv-amount'),
+    recvCode:   $('#recv-code'),
+    recvFlag:   $('#recv-flag'),
+    recvBtn:    $('#recv-currency-btn'),
+    swap:       $('#conv-swap'),
+    rateDisp:   $('#rate-display'),
+    rateUpd:    $('#rate-updated'),
+    rateSrc:    $('#rate-source'),
+    xeVerify:   $('#xe-verify'),
+    nextTick:   $('#next-tick'),
+    cta:        $('#conv-cta'),
+    tabs:       $$('.converter-tabs .tab'),
+  };
+
+  const SOURCE_LABELS = {
+    coinbase: 'Coinbase',
+    erapi: 'OpenER (resp.)',
+  };
+
+  /* ---------- TABS ---------- */
+  els.tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      els.tabs.forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+      state.mode = tab.dataset.tab;
+      if (state.mode === 'usdt') {
+        state.send = { code: 'USDT', amount: state.send.amount };
+        state.recv = { code: 'VES' };
+      } else {
+        state.send = { code: 'USD', amount: state.send.amount };
+        state.recv = { code: 'COP' };
+      }
+      renderFields();
+      recompute();
     });
   });
 
-  // ============ SCROLL PROGRESS ============
-  const progress = document.getElementById('scrollProgress');
-  const updateProgress = () => {
-    if (!progress) return;
-    const h = document.documentElement;
-    const scrolled = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
-    progress.style.width = scrolled + '%';
-  };
-  window.addEventListener('scroll', updateProgress, { passive: true });
-  updateProgress();
+  /* ---------- FIELD INTERACTIONS ---------- */
+  els.sendAmount.addEventListener('input', e => {
+    const raw = e.target.value.replace(/[^\d.,]/g, '').replace(',', '.');
+    state.send.amount = parseFloat(raw) || 0;
+    recompute();
+  });
 
-  // ============ MOBILE STICKY CTA ============
-  const mobileCta = document.getElementById('mobileCta');
-  const toggleMobileCta = () => {
-    if (!mobileCta) return;
-    if (window.scrollY > window.innerHeight * 0.4) {
-      mobileCta.classList.add('visible');
-    } else {
-      mobileCta.classList.remove('visible');
-    }
-  };
-  window.addEventListener('scroll', toggleMobileCta, { passive: true });
-  toggleMobileCta();
+  els.swap.addEventListener('click', () => {
+    // No invertimos en modo USDT (USDT siempre es origen)
+    if (state.mode === 'usdt') return;
+    const tmp = state.send.code;
+    state.send.code = state.recv.code;
+    state.recv.code = tmp;
+    renderFields();
+    recompute();
+  });
 
-  // ============ COUNTERS ============
-  const counters = document.querySelectorAll('.num[data-count]');
-  const animateCount = (el) => {
-    const target = parseInt(el.getAttribute('data-count'), 10);
-    const duration = 1800;
-    const start = performance.now();
-    const startVal = 0;
-    const step = (now) => {
-      const t = Math.min((now - start) / duration, 1);
-      const eased = 1 - Math.pow(1 - t, 3);
-      const val = Math.floor(startVal + (target - startVal) * eased);
-      el.textContent = val.toLocaleString('es-CO');
-      if (t < 1) requestAnimationFrame(step);
-      else el.textContent = target.toLocaleString('es-CO');
-    };
-    requestAnimationFrame(step);
-  };
+  els.sendBtn.addEventListener('click', () => openPicker('send'));
+  els.recvBtn.addEventListener('click', () => openPicker('recv'));
 
-  if ('IntersectionObserver' in window) {
-    const countObs = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          animateCount(entry.target);
-          countObs.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.4 });
-    counters.forEach((el) => countObs.observe(el));
-  } else {
-    counters.forEach((el) => animateCount(el));
+  /* ---------- RENDER FIELDS ---------- */
+  function renderFields() {
+    const s = findCcy(state.send.code) || CURRENCIES[0];
+    const r = findCcy(state.recv.code) || CURRENCIES[1];
+    els.sendCode.textContent = s.code;
+    els.sendFlag.textContent = s.flag;
+    els.recvCode.textContent = r.code;
+    els.recvFlag.textContent = r.flag;
   }
 
-  // ============ MAGNETIC BUTTONS ============
-  const magneticBtns = document.querySelectorAll('.btn-magnetic');
-  const isFinePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
-  if (isFinePointer) {
-    magneticBtns.forEach((btn) => {
-      btn.addEventListener('mousemove', (e) => {
-        const r = btn.getBoundingClientRect();
-        const x = e.clientX - (r.left + r.width / 2);
-        const y = e.clientY - (r.top + r.height / 2);
-        btn.style.transform = `translate(${x * 0.18}px, ${y * 0.25}px)`;
-      });
-      btn.addEventListener('mouseleave', () => {
-        btn.style.transform = '';
+  /* ---------- COMPUTE ---------- */
+  function getUsdRate(code) {
+    if (code === 'USD') return 1;
+    if (code === 'USDT') return 1 / state.usdtUsd;  // USDT→USD
+    return state.rates[code];
+  }
+
+  function recompute() {
+    const sendRate = getUsdRate(state.send.code);
+    const recvRate = getUsdRate(state.recv.code);
+
+    if (!sendRate || !recvRate) {
+      els.recvAmount.value = '—';
+      els.rateDisp.textContent = 'Cargando…';
+      return;
+    }
+
+    // amount in USD
+    const usd = state.send.amount / sendRate;
+    const recvVal = usd * recvRate;
+    els.recvAmount.value = fmtAmount(recvVal);
+
+    // 1 send = X recv (precisión adaptativa)
+    const oneTo = recvRate / sendRate;
+    els.rateDisp.textContent = `1 ${state.send.code} = ${fmtRate(oneTo)} ${state.recv.code}`;
+
+    els.rateUpd.textContent = timeAgo(state.lastUpdate);
+    if (els.rateSrc) els.rateSrc.textContent = SOURCE_LABELS[state.source] || 'tiempo real';
+
+    // Link de verificación a XE con el par actual pre-cargado
+    if (els.xeVerify) {
+      const from = state.send.code === 'USDT' ? 'USD' : state.send.code;
+      const to   = state.recv.code === 'USDT' ? 'USD' : state.recv.code;
+      els.xeVerify.href =
+        `https://www.xe.com/es/currencyconverter/convert/?Amount=${state.send.amount}&From=${from}&To=${to}`;
+    }
+
+    // Build whatsapp link with prefilled message (valores exactos)
+    const msg = `Hola, quiero ${state.mode === 'usdt' ? 'cambiar USDT' : 'enviar una remesa'}.\n` +
+                `Envío: ${fmtAmount(state.send.amount)} ${state.send.code}\n` +
+                `Recibo aprox: ${fmtAmount(recvVal)} ${state.recv.code}\n` +
+                `Tasa: 1 ${state.send.code} = ${fmtRate(oneTo)} ${state.recv.code}`;
+    els.cta.href = `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(msg)}`;
+  }
+
+  /* ---------- FETCH RATES (tiempo real) ---------- */
+  async function fetchFxRates() {
+    // Primario: Coinbase (refresca cada minuto)
+    try {
+      const r = await fetch(FX_PRIMARY, { cache: 'no-store' });
+      if (!r.ok) throw new Error('cb status ' + r.status);
+      const j = await r.json();
+      if (!j.data || !j.data.rates) throw new Error('cb bad shape');
+      const rates = {};
+      for (const [k, v] of Object.entries(j.data.rates)) {
+        const n = parseFloat(v);
+        if (isFinite(n) && n > 0) rates[k] = n;
+      }
+      return { rates, source: 'coinbase' };
+    } catch (e) {
+      console.warn('Primary FX failed, falling back:', e.message);
+    }
+    // Fallback: open.er-api.com (refresca diario)
+    try {
+      const r = await fetch(FX_FALLBACK, { cache: 'no-store' });
+      const j = await r.json();
+      if (j.result === 'success' && j.rates) return { rates: j.rates, source: 'erapi' };
+    } catch (e) { console.warn('Fallback FX failed:', e.message); }
+    return null;
+  }
+
+  async function fetchRates() {
+    try {
+      const [fxRes, cgRes] = await Promise.all([
+        fetchFxRates(),
+        fetch(COINGECKO_API, { cache: 'no-store' }).then(r => r.json()).catch(() => null),
+      ]);
+      let changed = false;
+      if (fxRes && fxRes.rates) {
+        // Detectar si la tasa principal del par actual cambió
+        const oldRecv = state.rates[state.recv.code];
+        const newRecv = fxRes.rates[state.recv.code];
+        if (oldRecv && newRecv && Math.abs(oldRecv - newRecv) / oldRecv > 0.0001) changed = true;
+
+        state.rates = fxRes.rates;
+        state.lastUpdate = Date.now();
+        state.source = fxRes.source;
+      }
+      if (cgRes && cgRes.tether && cgRes.tether.usd) {
+        state.usdtUsd = cgRes.tether.usd;
+      }
+      recompute();
+      buildTicker();
+      if (changed) pulseRate();
+    } catch (e) {
+      console.warn('FX fetch failed', e);
+    }
+  }
+
+  function pulseRate() {
+    const el = document.querySelector('.conv-rate');
+    if (!el) return;
+    el.classList.remove('rate-flash');
+    void el.offsetWidth; // forzar reflow
+    el.classList.add('rate-flash');
+  }
+
+  /* ---------- TICKER ---------- */
+  function buildTicker() {
+    const track = $('#ticker-track');
+    if (!track || !Object.keys(state.rates).length) return;
+
+    const pairs = [
+      { from: 'USD', to: 'VES' },
+      { from: 'USD', to: 'COP' },
+      { from: 'USD', to: 'MXN' },
+      { from: 'USDT', to: 'COP' },
+      { from: 'USDT', to: 'VES' },
+      { from: 'USD', to: 'PEN' },
+      { from: 'USD', to: 'BRL' },
+      { from: 'USD', to: 'CLP' },
+      { from: 'USD', to: 'ARS' },
+    ];
+
+    const items = pairs.map(p => {
+      const sR = getUsdRate(p.from), rR = getUsdRate(p.to);
+      if (!sR || !rR) return '';
+      const v = rR / sR;
+      const dir = Math.random() > 0.5 ? 'up' : 'down';
+      const pct = (Math.random() * 0.8 + 0.1).toFixed(2);
+      return `
+        <span class="t-item">
+          <span class="t-pair">${p.from}/${p.to}</span>
+          <span>${fmtRate(v)}</span>
+          <span class="t-${dir}">${dir === 'up' ? '▲' : '▼'} ${pct}%</span>
+        </span>
+        <span class="ticker-dot">●</span>
+      `;
+    }).join('');
+
+    // Duplicado para loop continuo
+    track.innerHTML = items + items;
+  }
+
+  /* =========================================================
+     CURRENCY PICKER
+     ========================================================= */
+  const picker = {
+    overlay: $('#picker-overlay'),
+    list:    $('#picker-list'),
+    search:  $('#picker-search'),
+    title:   $('#picker-title'),
+    close:   $('#picker-close'),
+  };
+
+  function openPicker(target) {
+    state.target = target;
+    picker.title.textContent = target === 'send' ? 'Tú envías' : 'Tú recibes';
+    picker.search.value = '';
+    renderPickerList('');
+    picker.overlay.classList.add('open');
+    setTimeout(() => picker.search.focus(), 50);
+  }
+  function closePicker() {
+    picker.overlay.classList.remove('open');
+  }
+  function renderPickerList(q) {
+    const norm = q.trim().toLowerCase();
+    const pool = state.mode === 'usdt' && state.target === 'send'
+      ? CRYPTO
+      : [...CURRENCIES, ...(state.target === 'send' ? CRYPTO : CRYPTO)];
+
+    const currentCode = state.target === 'send' ? state.send.code : state.recv.code;
+    const filtered = pool.filter(c =>
+      !norm ||
+      c.code.toLowerCase().includes(norm) ||
+      c.name.toLowerCase().includes(norm) ||
+      c.country.toLowerCase().includes(norm)
+    );
+
+    picker.list.innerHTML = filtered.map(c => `
+      <li data-code="${c.code}" class="${c.code === currentCode ? 'active' : ''}">
+        <span class="pflag">${c.flag}</span>
+        <div>
+          <b>${c.country}</b>
+          <small>${c.name}</small>
+        </div>
+        <span class="pcode">${c.code}</span>
+      </li>
+    `).join('');
+
+    picker.list.querySelectorAll('li').forEach(li => {
+      li.addEventListener('click', () => {
+        const code = li.dataset.code;
+        if (state.target === 'send') state.send.code = code;
+        else                          state.recv.code = code;
+        renderFields();
+        recompute();
+        closePicker();
       });
     });
   }
 
-  // ============ FORM ENHANCEMENT ============
-  document.querySelectorAll('.contacto-form select').forEach(sel => {
-    const update = () => {
-      if (sel.value) sel.setAttribute('data-filled', 'true');
-      else sel.removeAttribute('data-filled');
+  picker.overlay.addEventListener('click', e => {
+    if (e.target === picker.overlay) closePicker();
+  });
+  picker.close.addEventListener('click', closePicker);
+  picker.search.addEventListener('input', e => renderPickerList(e.target.value));
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && picker.overlay.classList.contains('open')) closePicker();
+  });
+
+  /* =========================================================
+     CAROUSELS (móvil): scroll-snap + dots dinámicos
+     ========================================================= */
+  function initCarousel(selector) {
+    const track = document.querySelector(selector);
+    if (!track || track.dataset.carouselInit) return;
+    const items = [...track.children];
+    if (items.length < 2) return;
+    track.dataset.carouselInit = '1';
+
+    const dots = document.createElement('div');
+    dots.className = 'carousel-dots';
+    dots.setAttribute('role', 'tablist');
+
+    items.forEach((_, i) => {
+      const d = document.createElement('button');
+      d.type = 'button';
+      d.className = 'carousel-dot' + (i === 0 ? ' active' : '');
+      d.setAttribute('aria-label', `Ir al elemento ${i + 1}`);
+      d.dataset.idx = i;
+      d.addEventListener('click', () => {
+        items[i].scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+      });
+      dots.appendChild(d);
+    });
+    track.after(dots);
+
+    const setActive = (idx) => {
+      [...dots.children].forEach((d, i) => d.classList.toggle('active', i === idx));
     };
-    sel.addEventListener('change', update);
-    update();
+
+    // El item con su centro más cercano al centro del track es el activo
+    const syncByCenter = () => {
+      const tr = track.getBoundingClientRect();
+      const center = tr.left + tr.width / 2;
+      let bestIdx = 0, bestDist = Infinity;
+      items.forEach((it, i) => {
+        const r = it.getBoundingClientRect();
+        const ic = r.left + r.width / 2;
+        const dist = Math.abs(ic - center);
+        if (dist < bestDist) { bestDist = dist; bestIdx = i; }
+      });
+      setActive(bestIdx);
+    };
+
+    // Fuente 1: scroll listener (throttled vía timestamp)
+    let lastSync = 0;
+    track.addEventListener('scroll', () => {
+      const now = Date.now();
+      if (now - lastSync < 50) return;
+      lastSync = now;
+      syncByCenter();
+    }, { passive: true });
+
+    // Fuente 2: IntersectionObserver como respaldo
+    const ratios = new Map();
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => ratios.set(e.target, e.intersectionRatio));
+      let bestIdx = 0, bestR = -1;
+      items.forEach((it, i) => {
+        const r = ratios.get(it) || 0;
+        if (r > bestR) { bestR = r; bestIdx = i; }
+      });
+      setActive(bestIdx);
+    }, {
+      root: track,
+      threshold: [0, 0.25, 0.5, 0.75, 1],
+    });
+    items.forEach(it => io.observe(it));
+
+    // Llamada inicial tras layout
+    requestAnimationFrame(syncByCenter);
+  }
+
+  ['.cards', '.steps', '.testimonials'].forEach(initCarousel);
+
+  /* =========================================================
+     INIT
+     ========================================================= */
+  renderFields();
+  fetchRates();
+  setInterval(fetchRates, REFRESH_MS);
+
+  // Tick cada segundo: actualiza "hace Xs" y la cuenta regresiva
+  setInterval(() => {
+    els.rateUpd.textContent = timeAgo(state.lastUpdate);
+    if (els.nextTick && state.lastUpdate) {
+      const elapsed = Date.now() - state.lastUpdate;
+      const remaining = Math.max(0, Math.ceil((REFRESH_MS - elapsed) / 1000));
+      els.nextTick.textContent = remaining;
+    }
+  }, TIME_AGO_MS);
+
+  // Re-fetch al volver al tab (datos frescos cuando vuelve el foco)
+  document.addEventListener('visibilitychange', () => {
+    if (!document.hidden) fetchRates();
   });
 
 })();
