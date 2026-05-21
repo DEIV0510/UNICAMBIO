@@ -424,6 +424,34 @@ input { font: inherit; color: inherit; }
 }
 .tab:not(.active):hover { color: var(--text); }
 
+/* Título estático del converter (reemplaza tabs) */
+.converter-title {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+}
+.converter-title img {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  object-fit: contain;
+  background: #fff;
+  padding: 2px;
+}
+.converter-title strong {
+  display: block;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  line-height: 1.1;
+}
+.converter-title small {
+  display: block;
+  font-size: 11.5px;
+  color: var(--text-dim);
+  margin-top: 1px;
+}
+
 .live-dot {
   font-size: 12px;
   color: var(--text-dim);
@@ -489,7 +517,15 @@ input { font: inherit; color: inherit; }
   flex-shrink: 0;
 }
 .conv-currency:hover { background: rgba(255,255,255,.1); }
-.flag { font-size: 20px; line-height: 1; }
+.flag { font-size: 20px; line-height: 1; display: inline-flex; align-items: center; }
+.flag-img {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  object-fit: contain;
+  display: block;
+}
+.picker-list .pflag .flag-img { width: 26px; height: 26px; }
 
 .conv-swap {
   display: flex;
@@ -576,7 +612,7 @@ input { font: inherit; color: inherit; }
 
 /* ==================== TRUST BAR ==================== */
 .trustbar {
-  padding: 56px 0;
+  padding: 36px 0;
   border-top: 1px solid var(--border);
   border-bottom: 1px solid var(--border);
   background: var(--bg-2);
@@ -584,83 +620,41 @@ input { font: inherit; color: inherit; }
 .trustbar-title {
   text-align: center;
   color: var(--text-muted);
-  font-size: 13px;
-  letter-spacing: .14em;
+  font-size: 12px;
+  letter-spacing: .16em;
   text-transform: uppercase;
-  margin: 0 0 32px;
+  margin: 0 0 24px;
 }
 
-/* Grupos por categoría */
-.logo-groups {
+/* Strip horizontal — logos en color sobre pill blanco compacto */
+.logo-strip {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  align-items: flex-start;
-  gap: 32px 40px;
-}
-.logo-group {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  min-width: 0;
-}
-.logo-group-label {
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: .18em;
-  text-transform: uppercase;
-  color: var(--text-muted);
-  text-align: center;
-  padding-bottom: 8px;
-  display: flex;
   align-items: center;
-  justify-content: center;
-  gap: 6px;
-  position: relative;
-}
-.logo-group-label::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 30%; right: 30%;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, var(--border-strong), transparent);
-}
-.lg-flag {
-  font-size: 14px;
-  line-height: 1;
-}
-.logo-group-tiles {
-  display: flex;
   gap: 10px;
 }
-
-.logo-tile {
-  background: #fff;
-  border-radius: 14px;
-  height: 76px;
-  min-width: 132px;
-  padding: 12px 18px;
-  display: flex;
+.logo-pill {
+  display: inline-flex;
   align-items: center;
   justify-content: center;
-  box-shadow:
-    0 6px 20px rgba(0,0,0,.3),
-    0 0 0 1px rgba(255,255,255,.05);
-  transition: transform .25s, box-shadow .25s;
+  background: transparent;
+  padding: 4px 10px;
+  height: 36px;
+  opacity: .85;
+  transition: opacity .25s, transform .25s;
 }
-.logo-tile:hover {
-  transform: translateY(-3px);
-  box-shadow:
-    0 12px 32px rgba(20,232,193,.2),
-    0 0 0 1px rgba(20,232,193,.35);
+.logo-pill:hover {
+  opacity: 1;
+  transform: translateY(-2px);
 }
-.logo-tile img {
-  max-width: 100%;
-  max-height: 42px;
+.logo-pill img {
+  height: 26px;
   width: auto;
-  height: auto;
+  max-width: 110px;
   object-fit: contain;
+  /* Sombrita sutil para que los logos oscuros (BBVA, Bancolombia, Banesco) se separen del fondo */
+  filter: drop-shadow(0 0 1px rgba(255,255,255,.4)) drop-shadow(0 0 6px rgba(255,255,255,.15));
 }
 
 /* ==================== STATS ==================== */
@@ -1432,22 +1426,24 @@ input { font: inherit; color: inherit; }
     min-width: 0;
   }
 
-  /* Grupos de logos en móvil: stack vertical, cada categoría con sus tiles */
-  .logo-groups { gap: 22px; flex-direction: column; align-items: stretch; }
-  .logo-group { width: 100%; }
-  .logo-group-tiles {
-    gap: 8px;
+  /* Logo strip móvil: scroll horizontal silencioso con pills */
+  .logo-strip {
+    flex-wrap: nowrap;
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
-    padding-bottom: 2px;
+    gap: 8px;
+    padding: 0 16px 4px;
+    margin: 0 -16px;
+    justify-content: flex-start;
   }
-  .logo-group-tiles::-webkit-scrollbar { display: none; }
-  .logo-group-tiles .logo-tile {
-    flex: 1 0 auto;
-    min-width: 132px;
-    max-width: 180px;
+  .logo-strip::-webkit-scrollbar { display: none; }
+  .logo-pill {
+    height: 32px;
+    padding: 4px 8px;
+    flex-shrink: 0;
   }
+  .logo-pill img { height: 22px; }
 
   /* Reset step a layout vertical centrado para el carrusel */
   .step {

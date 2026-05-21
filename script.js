@@ -24,7 +24,7 @@
     { code: 'PYG', name: 'Guaraní paraguayo',    country: 'Paraguay',       flag: '🇵🇾' },
   ];
   const CRYPTO = [
-    { code: 'USDT', name: 'Tether',              country: 'Stablecoin',     flag: '💠' }
+    { code: 'USDT', name: 'Tether',              country: 'Stablecoin',     flag: '', icon: 'logos/usdt.png' }
   ];
 
   const WHATSAPP = '573233947051';
@@ -37,9 +37,9 @@
 
   /* ---------- STATE ---------- */
   const state = {
-    mode: 'remesa',                 // 'remesa' | 'usdt'
-    send:  { code: 'USD', amount: 100 },
-    recv:  { code: 'COP' },
+    mode: 'usdt',                    // solo modo USDT/cripto
+    send:  { code: 'USDT', amount: 100 },
+    recv:  { code: 'VES' },
     rates: {},                       // USD-based rates
     usdtUsd: 1,                      // USDT price in USD
     lastUpdate: null,
@@ -159,24 +159,6 @@
     erapi: 'OpenER (resp.)',
   };
 
-  /* ---------- TABS ---------- */
-  els.tabs.forEach(tab => {
-    tab.addEventListener('click', () => {
-      els.tabs.forEach(t => t.classList.remove('active'));
-      tab.classList.add('active');
-      state.mode = tab.dataset.tab;
-      if (state.mode === 'usdt') {
-        state.send = { code: 'USDT', amount: state.send.amount };
-        state.recv = { code: 'VES' };
-      } else {
-        state.send = { code: 'USD', amount: state.send.amount };
-        state.recv = { code: 'COP' };
-      }
-      renderFields();
-      recompute();
-    });
-  });
-
   /* ---------- FIELD INTERACTIONS ---------- */
   els.sendAmount.addEventListener('input', e => {
     const raw = e.target.value.replace(/[^\d.,]/g, '').replace(',', '.');
@@ -184,9 +166,8 @@
     recompute();
   });
 
+  // Swap libre: permite vender o comprar USDT (USDT↔fiat en ambos sentidos)
   els.swap.addEventListener('click', () => {
-    // No invertimos en modo USDT (USDT siempre es origen)
-    if (state.mode === 'usdt') return;
     const tmp = state.send.code;
     state.send.code = state.recv.code;
     state.recv.code = tmp;
@@ -198,13 +179,20 @@
   els.recvBtn.addEventListener('click', () => openPicker('recv'));
 
   /* ---------- RENDER FIELDS ---------- */
+  function setFlag(el, ccy) {
+    if (ccy.icon) {
+      el.innerHTML = `<img src="${ccy.icon}" alt="${ccy.code}" class="flag-img" />`;
+    } else {
+      el.textContent = ccy.flag;
+    }
+  }
   function renderFields() {
     const s = findCcy(state.send.code) || CURRENCIES[0];
     const r = findCcy(state.recv.code) || CURRENCIES[1];
     els.sendCode.textContent = s.code;
-    els.sendFlag.textContent = s.flag;
+    setFlag(els.sendFlag, s);
     els.recvCode.textContent = r.code;
-    els.recvFlag.textContent = r.flag;
+    setFlag(els.recvFlag, r);
   }
 
   /* ---------- COMPUTE ---------- */
@@ -236,13 +224,8 @@
     els.rateUpd.textContent = timeAgo(state.lastUpdate);
     if (els.rateSrc) els.rateSrc.textContent = SOURCE_LABELS[state.source] || 'tiempo real';
 
-    // Link de verificación a XE con el par actual pre-cargado
-    if (els.xeVerify) {
-      const from = state.send.code === 'USDT' ? 'USD' : state.send.code;
-      const to   = state.recv.code === 'USDT' ? 'USD' : state.recv.code;
-      els.xeVerify.href =
-        `https://www.xe.com/es/currencyconverter/convert/?Amount=${state.send.amount}&From=${from}&To=${to}`;
-    }
+    // Link de verificación a CoinMarketCap (página oficial de USDT)
+    // Es URL estática, no necesita actualización dinámica
 
     // Build whatsapp link with prefilled message (valores exactos)
     const msg = `Hola, quiero ${state.mode === 'usdt' ? 'cambiar USDT' : 'enviar una remesa'}.\n` +
@@ -389,7 +372,7 @@
 
     picker.list.innerHTML = filtered.map(c => `
       <li data-code="${c.code}" class="${c.code === currentCode ? 'active' : ''}">
-        <span class="pflag">${c.flag}</span>
+        <span class="pflag">${c.icon ? `<img src="${c.icon}" alt="${c.code}" class="flag-img" />` : c.flag}</span>
         <div>
           <b>${c.country}</b>
           <small>${c.name}</small>

@@ -110,15 +110,12 @@
       <div class="converter-glow"></div>
 
       <div class="converter-head">
-        <div class="converter-tabs" role="tablist">
-          <button class="tab active" data-tab="remesa" role="tab">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 4L12 14.01l-3-3"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
-            Remesa
-          </button>
-          <button class="tab" data-tab="usdt" role="tab">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v12M8 10h8M8 14h8"/></svg>
-            USDT / Cripto
-          </button>
+        <div class="converter-title">
+          <img src="logos/usdt.png" alt="USDT" />
+          <div>
+            <strong>USDT / Cripto</strong>
+            <small>Compra y venta al instante</small>
+          </div>
         </div>
         <span class="live-dot"><span></span> En vivo</span>
       </div>
@@ -164,8 +161,8 @@
             <span id="rate-updated">—</span>
           </div>
           <div class="rate-line muted rate-meta">
-            <a href="#" id="xe-verify" target="_blank" rel="noopener" class="xe-link">
-              Verificar en XE
+            <a href="https://coinmarketcap.com/es/currencies/tether/" id="xe-verify" target="_blank" rel="noopener" class="xe-link">
+              Ver en CoinMarketCap
               <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M9 7h8v8"/></svg>
             </a>
             <span class="next-refresh">próx. <span id="next-tick">15</span>s</span>
@@ -190,45 +187,17 @@
   <div class="container">
     <p class="trustbar-title">Operamos con los principales métodos de pago</p>
 
-    <div class="logo-groups">
-      <div class="logo-group">
-        <span class="logo-group-label">Internacional</span>
-        <div class="logo-group-tiles">
-          <div class="logo-tile"><img src="logos/zelle.png" alt="Zelle" loading="lazy" /></div>
-          <div class="logo-tile"><img src="logos/paypal.png" alt="PayPal" loading="lazy" /></div>
-        </div>
-      </div>
-
-      <div class="logo-group">
-        <span class="logo-group-label">Cripto</span>
-        <div class="logo-group-tiles">
-          <div class="logo-tile"><img src="logos/binance.png" alt="Binance" loading="lazy" /></div>
-        </div>
-      </div>
-
-      <div class="logo-group">
-        <span class="logo-group-label"><span class="lg-flag">🇨🇴</span> Colombia</span>
-        <div class="logo-group-tiles">
-          <div class="logo-tile"><img src="logos/nequi.png" alt="Nequi" loading="lazy" /></div>
-          <div class="logo-tile"><img src="logos/bancolombia.png" alt="Bancolombia" loading="lazy" /></div>
-        </div>
-      </div>
-
-      <div class="logo-group">
-        <span class="logo-group-label"><span class="lg-flag">🇻🇪</span> Venezuela</span>
-        <div class="logo-group-tiles">
-          <div class="logo-tile"><img src="logos/mercantil.png" alt="Mercantil" loading="lazy" /></div>
-          <div class="logo-tile"><img src="logos/bbva.png" alt="BBVA" loading="lazy" /></div>
-          <div class="logo-tile"><img src="logos/banesco.png" alt="Banesco" loading="lazy" /></div>
-        </div>
-      </div>
-
-      <div class="logo-group">
-        <span class="logo-group-label"><span class="lg-flag">🇧🇷</span> Brasil</span>
-        <div class="logo-group-tiles">
-          <div class="logo-tile"><img src="logos/pix.png" alt="PIX" loading="lazy" /></div>
-        </div>
-      </div>
+    <div class="logo-strip">
+      <span class="logo-pill"><img src="logos/zelle.png"       alt="Zelle"       loading="lazy" /></span>
+      <span class="logo-pill"><img src="logos/paypal.png"      alt="PayPal"      loading="lazy" /></span>
+      <span class="logo-pill"><img src="logos/binance.png"     alt="Binance"     loading="lazy" /></span>
+      <span class="logo-pill"><img src="logos/usdt.png"        alt="USDT"        loading="lazy" /></span>
+      <span class="logo-pill"><img src="logos/nequi.png"       alt="Nequi"       loading="lazy" /></span>
+      <span class="logo-pill"><img src="logos/bancolombia.png" alt="Bancolombia" loading="lazy" /></span>
+      <span class="logo-pill"><img src="logos/mercantil.png"   alt="Mercantil"   loading="lazy" /></span>
+      <span class="logo-pill"><img src="logos/bbva.png"        alt="BBVA"        loading="lazy" /></span>
+      <span class="logo-pill"><img src="logos/banesco.png"     alt="Banesco"     loading="lazy" /></span>
+      <span class="logo-pill"><img src="logos/pix.png"         alt="PIX"         loading="lazy" /></span>
     </div>
   </div>
 </section>
