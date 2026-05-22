@@ -228,7 +228,7 @@
     // Es URL estática, no necesita actualización dinámica
 
     // Build whatsapp link with prefilled message (valores exactos)
-    const msg = `Hola, quiero ${state.mode === 'usdt' ? 'cambiar USDT' : 'enviar una remesa'}.\n` +
+    const msg = `Hola, quiero cambiar USDT.\n` +
                 `Envío: ${fmtAmount(state.send.amount)} ${state.send.code}\n` +
                 `Recibo aprox: ${fmtAmount(recvVal)} ${state.recv.code}\n` +
                 `Tasa: 1 ${state.send.code} = ${fmtRate(oneTo)} ${state.recv.code}`;
